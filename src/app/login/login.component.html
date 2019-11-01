@@ -6,22 +6,27 @@
     </button>
 </div>
 <div class="modal-body">
-     <form [formGroup]="customerform" (ngSubmit)="onSubmit()">
+        <div [hidden]="status">
+     <form [formGroup]="customerform" (ngSubmit)="check()">
         <p>Customer Details</p>
 
         <label>Phone Number:</label>
-        <input class="form-control" type="text" formControlName="phoneNumber">
-        <span *ngIf="customerform.controls.phoneNumber.invalid">
+        <input class="form-control" type="text" formControlName="phonenumber">
+        <span *ngIf="customerform.controls.phonenumber.invalid">
             phoneNumber is required.
         </span><br> <br>
         <label>Password:</label>
-        <input class="form-control" type="text" formControlName="passWord">
-        <span *ngIf="customerform.controls.passWord.invalid">
+        <input class="form-control" type="text" formControlName="password">
+        <span *ngIf="customerform.controls.password.invalid">
             Password is required.
         </span><br> <br>
-
+        <button type="submit" class="btn btn-outline-success">Submit</button>
+        <button type="button" class="btn btn-outline-danger" (click)="open()">ForgotPassword</button>
     </form> 
+    </div>
+    <div [hidden]="!status">Successful</div>
 </div>
 <div class="modal-footer">
+       
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>

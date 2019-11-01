@@ -5,18 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 import {NgbPaginationModule, NgbAlertModule,NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    WelcomeComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,
-    AppRoutingModule,FormsModule
+    AppRoutingModule,FormsModule,HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [RegisterComponent],
+  bootstrap: [AppComponent],
+  entryComponents: [ForgotpasswordComponent]
 })
 export class AppModule { }
