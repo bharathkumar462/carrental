@@ -1,18 +1,22 @@
 <div class="modal-header">
-        <h4 class="modal-title">Hi there!</h4>
+        <h4 class="modal-title">Register Form</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
 <form [formGroup]="customerform" (ngSubmit)="save()">
-    <p>Customer Details</p>
+    <input  style="margin-left:40px;"  type="radio" formControlName="role" value="admin">
+    <label >Admin</label>
+    <input style="margin-left:80px;" type="radio" formControlName="role" value="customer">
+    <label>Customer</label>
+    <br>
     <label>First Name:</label>
     <input class="form-control form-control-lg" type="text" formControlName="username" required>
     <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
         firstName is required.
     </span>
-    <br> <br>
+    <br> 
     <label>Phone Number:</label>
     <input class="form-control form-control-lg" type="text" formControlName="phonenumber">
     <span *ngIf="customerform.controls.phonenumber.invalid">
@@ -28,7 +32,7 @@
     <span *ngIf="customerform.controls.repassword.invalid">
             Re-Type Password is required.
     </span><br> <br>
-    <button type="submit" class="btn btn-outline-success">Submit</button>
+    <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
 </form>
 </div>
 <div class="modal-footer">

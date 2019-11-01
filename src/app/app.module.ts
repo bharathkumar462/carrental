@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbPaginationModule, NgbAlertModule,NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     WelcomeComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    PickuppointComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,

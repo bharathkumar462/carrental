@@ -11,6 +11,8 @@ import { CarrentalserviceService } from '../carrentalservice.service';
 })
 export class LoginComponent implements OnInit {
   status:boolean=false;
+  role:String="";
+  customer:customerform;
   customerform = new FormGroup({
     phonenumber: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
@@ -25,7 +27,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
     
   check(){
-      this.lgnservice.checkCustomer(this.customerform.value).subscribe(data => this.status=data, error => console.log(error));
+    console.log("hi");
+      this.lgnservice.checkCustomer(this.customerform.value).subscribe(data => console.log(data), error => console.log(error));
+      
+      console.log(this.customer);
     }
 
 }
