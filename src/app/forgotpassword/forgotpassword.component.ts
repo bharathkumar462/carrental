@@ -15,7 +15,8 @@ export class ForgotpasswordComponent implements OnInit {
     username: new FormControl('',Validators.required),
     phonenumber: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
-    repassword: new FormControl('',Validators.required)
+    repassword: new FormControl('',Validators.required),
+    admin: new FormControl('',Validators.required)
   });
   constructor(private activeModal: NgbActiveModal,private modalService: NgbModal,private frgtservice:CarrentalserviceService) { }
 

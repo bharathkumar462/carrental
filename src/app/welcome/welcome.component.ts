@@ -8,7 +8,7 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-
+name:string="unknown";
   constructor(private modalService: NgbModal) {}
   open() {
     this.modalService.open(LoginComponent);
@@ -17,7 +17,6 @@ export class WelcomeComponent implements OnInit {
     this.modalService.open(RegisterComponent);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

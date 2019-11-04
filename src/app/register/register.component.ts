@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     phonenumber: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
     repassword: new FormControl('',Validators.required),
-    role: new FormControl('',Validators.required)
+    admin: new FormControl('',Validators.required)
   });
   constructor(public activeModal: NgbActiveModal,private regservice:CarrentalserviceService,private modalService: NgbModal,private router:Router) { }
 

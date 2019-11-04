@@ -4,6 +4,8 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { RegisterComponent } from '../register/register.component';
 import { CarrentalserviceService } from '../carrentalservice.service';
+import { Router } from '@angular/router';
+import { WelcomeComponent } from '../welcome/welcome.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,15 +13,16 @@ import { CarrentalserviceService } from '../carrentalservice.service';
 })
 export class LoginComponent implements OnInit {
   status:boolean=false;
-  role:String="";
-  
+  role:number;
+  name:string='unknown';
   customerform = new FormGroup({
     phonenumber: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
-   
+    username: new FormControl('',Validators.required)
   });
  
-  constructor(public activeModal: NgbActiveModal,private modalService: NgbModal,private lgnservice:CarrentalserviceService){}
+  constructor(public activeModal: NgbActiveModal,private modalService: NgbModal,
+    private lgnservice:CarrentalserviceService,private route:Router,private naming:WelcomeComponent){}
   open() {
     this.modalService.open(ForgotpasswordComponent);
     this.activeModal.close();
@@ -27,10 +30,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
     
   check(){
-    console.log("hi");
-      this.lgnservice.checkCustomer(this.customerform.value).subscribe(data => console.log(data), error => console.log(error));
-      
-     
+    this.naming.name=this.name;
+    console.log(this.naming.name);
+    this.lgnservice.checkCustomer(this.customerform.value).subscribe(data =>{
+          this.role=data;
+          console.log(this.role);
+         if(this.role === 1)
+         {console.log(this.role);
+           this.route.navigate(['admin']);
+           this.activeModal.close();
+          }
+          else if(this.role === 0){
+           this.activeModal.close();
+          }    
+         });
     }
 
 }

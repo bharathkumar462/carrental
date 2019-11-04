@@ -10,6 +10,7 @@ import {NgbPaginationModule, NgbAlertModule,NgbModule} from '@ng-bootstrap/ng-bo
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
+import { AdminpageComponent } from './adminpage/adminpage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,13 +18,14 @@ import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
     RegisterComponent,
     WelcomeComponent,
     ForgotpasswordComponent,
-    PickuppointComponent
+    PickuppointComponent,
+    AdminpageComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,
     AppRoutingModule,FormsModule,HttpClientModule
   ],
-  providers: [RegisterComponent],
+  providers: [RegisterComponent,WelcomeComponent],
   bootstrap: [AppComponent],
   entryComponents: [ForgotpasswordComponent]
 })

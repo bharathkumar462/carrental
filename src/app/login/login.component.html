@@ -8,8 +8,11 @@
 <div class="modal-body">
         <div [hidden]="status">
      <form [formGroup]="customerform" (ngSubmit)="check()">
-        <p>Customer Details</p>
-
+        <label>First Name:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="username" [(ngModel)]="name">
+        <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
+            firstName is required.
+        </span> <br>
         <label>Phone Number:</label>
         <input class="form-control" type="text" formControlName="phonenumber">
         <span *ngIf="customerform.controls.phonenumber.invalid">
