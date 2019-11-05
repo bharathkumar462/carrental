@@ -12,6 +12,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { BookcarsComponent } from './bookcars/bookcars.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
     WelcomeComponent,
     ForgotpasswordComponent,
     PickuppointComponent,
-    AdminpageComponent
+    AdminpageComponent,
+    BookcarsComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,

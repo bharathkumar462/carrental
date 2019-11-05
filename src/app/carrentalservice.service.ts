@@ -6,19 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarrentalserviceService {
-  private baseUrl = 'http://localhost:8080/api/customers';
+  private baseUrl = 'http://localhost:8080/api/';
   constructor(private http:HttpClient) { }
   createCustomer(customer:object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`+ `/create`,customer);
+    return this.http.post(`${this.baseUrl}`+ `customers/create`,customer);
   }
  
   checkCustomer(customer:object): Observable<any> {
-    return this.http.post(`${this.baseUrl}`+ `/authenticate`,customer);
+    return this.http.post(`${this.baseUrl}`+ `customers/authenticate`,customer);
   }
   forgotPassword(customer:object): Observable<any> {
-    return this.http.post(`${this.baseUrl}`+ `/forgotpassword`,customer);
+    return this.http.post(`${this.baseUrl}`+ `customers/forgotpassword`,customer);
   }
   updatePassword(customer:object): Observable<any> {
-    return this.http.post(`${this.baseUrl}`+ `/updatepassword`,customer);
+    return this.http.post(`${this.baseUrl}`+ `customers/updatepassword`,customer);
+  }
+  addCars(cars:object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}`+ `cars/add`,cars);
   }
 }

@@ -15,7 +15,7 @@ import { AdminpageComponent } from '../adminpage/adminpage.component';
 export class LoginComponent implements OnInit {
   status:boolean=false;
   role:number;
-  name:string='unknown';
+  name:string;
   customerform = new FormGroup({
     phonenumber: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
@@ -43,7 +43,9 @@ export class LoginComponent implements OnInit {
            this.activeModal.close();
           }
           else if(this.role === 0){
+            sessionStorage.setItem('customername',this.name);
            this.activeModal.close();
+           this.route.navigate(['pickuppoint']);
           }    
          });
     }
