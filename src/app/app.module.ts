@@ -11,6 +11,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,9 +25,12 @@ import { AdminpageComponent } from './adminpage/adminpage.component';
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,
-    AppRoutingModule,FormsModule,HttpClientModule
+    AppRoutingModule,FormsModule,HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCyD380KGjDX0bHwfIKpQ7IsJwpBrOrJm0'
+    })
   ],
-  providers: [RegisterComponent,WelcomeComponent],
+  providers: [RegisterComponent,AdminpageComponent,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent],
   entryComponents: [ForgotpasswordComponent]
 })

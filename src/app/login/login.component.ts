@@ -6,6 +6,7 @@ import { RegisterComponent } from '../register/register.component';
 import { CarrentalserviceService } from '../carrentalservice.service';
 import { Router } from '@angular/router';
 import { WelcomeComponent } from '../welcome/welcome.component';
+import { AdminpageComponent } from '../adminpage/adminpage.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   });
  
   constructor(public activeModal: NgbActiveModal,private modalService: NgbModal,
-    private lgnservice:CarrentalserviceService,private route:Router,private naming:WelcomeComponent){}
+    private lgnservice:CarrentalserviceService,private route:Router,private naming:AdminpageComponent){}
   open() {
     this.modalService.open(ForgotpasswordComponent);
     this.activeModal.close();
@@ -30,13 +31,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
     
   check(){
-    this.naming.name=this.name;
-    console.log(this.naming.name);
+    
+    
     this.lgnservice.checkCustomer(this.customerform.value).subscribe(data =>{
           this.role=data;
           console.log(this.role);
          if(this.role === 1)
          {console.log(this.role);
+          sessionStorage.setItem('customername',this.name);
            this.route.navigate(['admin']);
            this.activeModal.close();
           }
