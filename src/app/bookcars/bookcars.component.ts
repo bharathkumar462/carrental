@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarrentalserviceService } from '../carrentalservice.service';
+import { CarsList } from '../carslist';
 
 @Component({
   selector: 'app-bookcars',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookcarsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private getcarservice:CarrentalserviceService) { }
+area;cars:CarsList[];
   ngOnInit() {
+    this.area=sessionStorage.getItem('area');
+    this.getcarservice.getCars(this.area).subscribe(data=>{
+      this.cars=data;
+      console.log(this.cars);});
   }
-
 }

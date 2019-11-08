@@ -9,20 +9,23 @@
         <div [hidden]="status">
      <form [formGroup]="customerform" (ngSubmit)="check()">
         <label>First Name:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="username" [(ngModel)]="name">
+        <div class="usericon"><img src="assets/images/users.png">
+        <input  class="form-control form-control-lg" type="text" formControlName="username" [(ngModel)]="name">
         <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
             firstName is required.
-        </span> <br>
+        </span> </div><br>
         <label>Phone Number:</label>
+        <div class="usericon"><img src="assets/images/mobile-app.png">
         <input class="form-control" type="text" formControlName="phonenumber">
         <span *ngIf="customerform.controls.phonenumber.invalid">
             phoneNumber is required.
-        </span><br> <br>
+        </span></div><br> <br>
         <label>Password:</label>
+        <div class="usericon"><img src="assets/images/key.png">
         <input class="form-control" type="text" formControlName="password">
         <span *ngIf="customerform.controls.password.invalid">
             Password is required.
-        </span><br> <br>
+        </span></div><br> <br>
         <button type="submit" class="btn btn-outline-success">Submit</button>
         <button type="button" class="btn btn-outline-danger" (click)="open()">ForgotPassword</button>
     </form> 

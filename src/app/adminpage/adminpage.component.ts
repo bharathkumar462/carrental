@@ -3,11 +3,8 @@ import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { AgmMap } from '@agm/core';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-
-
-
-
+import { CarrentalserviceService } from '../carrentalservice.service';
+import { CarsList } from '../carslist';
 
 @Component({
   selector: 'app-adminpage',
@@ -16,15 +13,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AdminpageComponent implements OnInit {
  
-  customerform = new FormGroup({
-    username: new FormControl('',Validators.required),
-    phonenumber: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
-    repassword: new FormControl('',Validators.required),
-    admin: new FormControl('',Validators.required)
-  });
+carslist:CarsList=new CarsList();
 
-  ngOnInit() {  }
+  // carslistfrom = new FormGroup({
+  //   availability: new FormControl('',Validators.required),
+  //   carname: new FormControl('',Validators.required),
+  //   price: new FormControl('',Validators.required)
+  // });
+save(){
+  console.log(this.carslist);
+this.addcarservice.addCars(this.carslist).subscribe(data=>console.log(data));
+}
+constructor(private addcarservice:CarrentalserviceService){}
+  ngOnInit() {  this.carslist.bookstatus=false;console.log(this.carslist);}
   // lat;
   // lng;
   // private setCurrentLocation() {

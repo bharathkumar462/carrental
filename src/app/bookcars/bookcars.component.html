@@ -1,1 +1,33 @@
 <p>bookcars works!</p>
+<p>{{cars | json}}</p>
+<div *ngFor="let c of cars">
+  <div class="card border-danger text-white bg-dark mb-3" style="width:50%;background-color: brown">
+    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+    <div class="card-body">
+      <h5 class="card-title">{{c.carname}}</h5>
+      <p class="card-text">{{c.availability}}
+      {{c.carname}}
+      {{c.bookstatus}}
+      {{c.price}}</p>
+      <button [disabled]="c.bookstatus" class="btn btn-primary">BOOK</button>
+  </div>
+  
+</div>
+<hr>
+
+<div class="card-deck">
+    <div *ngFor="let c of cars">
+        <div class="card border-danger text-white bg-dark mb-3" style="width:50%;background-color: brown">
+          <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">{{c.carname}}</h5>
+            <p class="card-text">{{c.availability}}
+            {{c.carname}}
+            {{c.bookstatus}}
+            {{c.price}}</p>
+            <button [disabled]="c.bookstatus" class="btn btn-primary">BOOK</button>
+        </div>
+        
+      </div>
+  </div>
+  

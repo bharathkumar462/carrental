@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CarrentalserviceService } from '../carrentalservice.service';
 @Component({
   selector: 'app-pickuppoint',
   templateUrl: './pickuppoint.component.html',

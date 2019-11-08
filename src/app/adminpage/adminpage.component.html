@@ -10,10 +10,10 @@
 </nav>
 
 <div id="firstimage">
-        <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
-        <p class="display-3"> JUST RENT CARS!!!</p>
-        <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start
-                        Your Journey</button></a>
+        <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
+        <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
+        <button style="margin-left:400px;height:50px;width: 500px;"  class="btn btn-warning">
+                Add Cars</button>
 </div>
 <router-outlet></router-outlet>
 
@@ -26,32 +26,38 @@
                 <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
               </agm-map> -->
 
-<form [formGroup]="customerform" (ngSubmit)="save()">
-        <input style="margin-left:40px;" type="radio" formControlName="admin" value="1">
-        <label>Admin</label>
-        <input style="margin-left:80px;" type="radio" formControlName="admin" value="0">
-        <label>Customer</label>
-        <br>
-        <label>First Name:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="username" required>
-        <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
-                firstName is required.
+<!-- <form [formGroup]="carslistfrom" (ngSubmit)="save()">
+       
+        <label>availability:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="availability" required>
+        <span *ngIf="carslistfrom.controls.availability.invalid && carslistfrom.controls.availability.dirty">
+                        availability is required.
         </span>
         <br>
-        <label>Phone Number:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="phonenumber">
-        <span *ngIf="customerform.controls.phonenumber.invalid">
-                phoneNumber is required.
+        <label>carname:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="carname">
+        <span *ngIf="carslistfrom.controls.carname.invalid">
+                        carname is required.
         </span><br> <br>
-        <label>Password:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="password">
-        <span *ngIf="customerform.controls.password.invalid">
-                Password is required.
+        <label>price:</label>
+        <input class="form-control form-control-lg" type="number" formControlName="price">
+        <span *ngIf="carslistfrom.controls.price.invalid">
+                        price is required.
         </span><br> <br>
-        <label>Re-Type Password:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="repassword">
-        <span *ngIf="customerform.controls.repassword.invalid">
-                Re-Type Password is required.
-        </span><br> <br>
+       
         <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
-</form>
+</form> -->
+
+<label>availability:</label>
+<input class="form-control form-control-lg" type="text" [(ngModel)]="carslist.availability" >
+<br>
+<label>carname:</label>
+<input class="form-control form-control-lg" type="text"  [(ngModel)]="carslist.carname">
+
+<label>price:</label>
+<input class="form-control form-control-lg" type="number" [(ngModel)]="carslist.price">
+
+
+<button type="submit" class="btn btn-outline-success btn-block" (click)="save()">Submit</button>
+{{this.carslistfrom | json}}
+

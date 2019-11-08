@@ -13,7 +13,11 @@ import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { BookcarsComponent } from './bookcars/bookcars.component';
-
+import { OtpverifyComponent } from './otpverify/otpverify.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,14 +27,18 @@ import { BookcarsComponent } from './bookcars/bookcars.component';
     ForgotpasswordComponent,
     PickuppointComponent,
     AdminpageComponent,
-    BookcarsComponent
+    BookcarsComponent,
+    OtpverifyComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,
     AppRoutingModule,FormsModule,HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCyD380KGjDX0bHwfIKpQ7IsJwpBrOrJm0'
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, 
+    AngularFireAuthModule,
   ],
   providers: [RegisterComponent,AdminpageComponent,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent],

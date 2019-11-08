@@ -24,4 +24,7 @@ export class CarrentalserviceService {
   addCars(cars:object): Observable<Object> {
     return this.http.post(`${this.baseUrl}`+ `cars/add`,cars);
   }
+  getCars(area:string): Observable<any> {
+    return this.http.post(`${this.baseUrl}`+ `cars/getbyavailability`,area);
+  }
 }

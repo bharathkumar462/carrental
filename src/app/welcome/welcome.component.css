@@ -7,3 +7,36 @@
 p{
     color: azure;
 }
+.card-text{
+    color:black;
+}
+.card-img-top{
+    
+    width: 200px;
+    height: 200px;
+}
+.card-title{
+    font-weight:bold;
+}
+#working .card-img-top{
+    padding-left: 30px;
+    width: 100px;
+    height: 100px;
+}
+.card{
+    box-shadow: 0 0 5px rgba(20, 20, 20, .6);
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+}
+
+.card-text {
+    display: block;
+    -webkit-transform: translateZ(60px);
+            transform: translateZ(60px);
+    font-style: italic;
+    font-weight: bold;
+}
+.container{
+    margin-top: 40px;
+    margin-bottom:40px;
+}

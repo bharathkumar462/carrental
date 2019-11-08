@@ -1,17 +1,122 @@
 <nav class="navbar bg-dark">
         <div class="navbar-header">
                 <a class="navbar-brand" href="#">CARRENTAL</a>
-              </div>
-<div class="navbar right">
-        <p>{{name}}</p>
-<p class="navbar-brand" (click)="open()">Login</p>
-<p class="navbar-brand" (click)="open1()">Register</p>
-</div>
+        </div>
+        <div class="navbar right">
+                <p>{{name}}</p>
+                <p class="navbar-brand" (click)="open()">Login</p>
+                <p class="navbar-brand" (click)="open1()">Register</p>
+        </div>
 </nav>
-       
-      <div id="firstimage">
-              <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
-              <p class="display-3"> JUST RENT CARS!!!</p>
-              <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start Your Journey</button></a>
-      </div> 
-      <router-outlet></router-outlet> 
+
+<div id="firstimage">
+        <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
+        <p class="display-3"> JUST RENT CARS!!!</p>
+        <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start
+                        Your Journey</button></a>
+</div>
+<router-outlet></router-outlet>
+<div class="container">
+<h2 style="font-weight: bold;text-align:center">THE CARRENTAL ADVANTAGE</h2>
+<p style="color:black;text-align:center">We simplified car rentals, so you can focus on what's important to you.</p>
+
+        <div class="card-deck">
+
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/gas.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">Fuel Cost Included</h5>
+                                <p class="card-text">Don't worry about mileage! All fuel costs are included. If
+                                        you
+                                        refill fuel, we'll pay you back!.</p>
+                        </div>
+                </div>
+
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/rich.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">No Hidden Charges</h5>
+                                <p class="card-text">Our prices include taxes and insurance.
+                                        What you see is what you really pay!</p>
+
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/order.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">Flexi Pricing Packages</h5>
+                                <p class="card-text">One size never fits all! Choose a balance of time and kilometers
+                                        that works best for you.</p>
+
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/map-location.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">Go Anywhere</h5>
+                                <p class="card-text">Our cars have all-India permits.  Just remember to pay state tolls
+                                        and entry taxes.</p>
+
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/route.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">24x7 Roadside Assistance</h5>
+                                <p class="card-text">We have round-the-clock, pan India partners. Help is never far
+                                        away from you.</p>
+
+                        </div>
+                </div>
+               
+        </div>
+</div>
+<div class="container" id="working">
+<h2 style="font-weight: bold;text-align:center">HOW CARRENTAL WORKS</h2>
+<p style="color:black;text-align:center">Drive yourself to an adventure and back in 5 simple steps</p>
+
+        <div class="card-deck">
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/bookcar.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">BOOK</h5>
+                                <p class="card-text">Search for and book a car on our site!</p>
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/travelcard.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">UPLOAD LICENSE</h5>
+                                <p class="card-text">Upload your driver’s license, and pay a small security deposit.</p>
+
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/unlock.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">UNLOCK</h5>
+                                <p class="card-text">We SMS your car details 20 minutes before pickup. Unlock it via
+                                        the Zoomcar app.</p>
+
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/carkey.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">GET KEYS</h5>
+                                <p class="card-text">Fill the start checklist in the Zoomcar app. Grab the keys from
+                                        the glove-box and drive.</p>
+
+                        </div>
+                </div>
+                <div class="card">
+                        <img class="card-img-top" src="assets/images/return.png" alt="Card image cap">
+                        <div class="card-body">
+                                <h5 class="card-title">RETURN</h5>
+                                <p class="card-text">Return the car to the same location and fill the end checklist to
+                                        end your trip.</p>
+
+                        </div>
+                </div>
+        </div>
+</div>
