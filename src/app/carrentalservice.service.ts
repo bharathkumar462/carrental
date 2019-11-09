@@ -27,4 +27,17 @@ export class CarrentalserviceService {
   getCars(area:string): Observable<any> {
     return this.http.post(`${this.baseUrl}`+ `cars/getbyavailability`,area);
   }
+
+  postimage(data:any):Observable<any>
+{
+
+  return this.http.post(this.baseUrl+'/insertimage',data);
+}
+
+getimage(data:any):Observable<any>
+{
+
+  return this.http.get(`${this.baseUrl}/getimage/${data}`);
+}
+
 }

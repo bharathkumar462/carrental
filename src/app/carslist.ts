@@ -3,4 +3,5 @@ export class CarsList{
     carname:String;
     bookstatus:Boolean;
     price:number;
+    image:any;
 }

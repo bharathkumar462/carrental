@@ -2,17 +2,12 @@
         <div class="navbar-header">
                 <a class="navbar-brand" href="#">CARRENTAL</a>
         </div>
-        <div class="navbar right">
-                <p>{{name}}</p>
-                <p class="navbar-brand" (click)="open()">Login</p>
-                <p class="navbar-brand" (click)="open1()">Register</p>
-        </div>
 </nav>
 
 <div id="firstimage">
         <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
         <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
-        <button style="margin-left:400px;height:50px;width: 500px;"  class="btn btn-warning">
+        <button style="margin-left:400px;height:50px;width: 500px;" class="btn btn-warning">
                 Add Cars</button>
 </div>
 <router-outlet></router-outlet>
@@ -26,29 +21,29 @@
                 <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
               </agm-map> -->
 
-<!-- <form [formGroup]="carslistfrom" (ngSubmit)="save()">
-       
+<form [formGroup]="carslistfrom" (ngSubmit)="save()">
+
         <label>availability:</label>
         <input class="form-control form-control-lg" type="text" formControlName="availability" required>
         <span *ngIf="carslistfrom.controls.availability.invalid && carslistfrom.controls.availability.dirty">
-                        availability is required.
+                availability is required.
         </span>
         <br>
         <label>carname:</label>
         <input class="form-control form-control-lg" type="text" formControlName="carname">
         <span *ngIf="carslistfrom.controls.carname.invalid">
-                        carname is required.
+                carname is required.
         </span><br> <br>
         <label>price:</label>
         <input class="form-control form-control-lg" type="number" formControlName="price">
         <span *ngIf="carslistfrom.controls.price.invalid">
-                        price is required.
-        </span><br> <br>
-       
+                price is required.
+        </span><br>
+        <input type="file" (change)="image($event)"  accept="image/*"><br>
         <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
-</form> -->
+</form>
 
-<label>availability:</label>
+<!-- <label>availability:</label>
 <input class="form-control form-control-lg" type="text" [(ngModel)]="carslist.availability" >
 <br>
 <label>carname:</label>
@@ -58,6 +53,5 @@
 <input class="form-control form-control-lg" type="number" [(ngModel)]="carslist.price">
 
 
-<button type="submit" class="btn btn-outline-success btn-block" (click)="save()">Submit</button>
-{{this.carslistfrom | json}}
-
+<button type="submit" class="btn btn-outline-success btn-block" (click)="save()">Submit</button> -->
+{{this.carslistfrom.value | json}}

@@ -14,11 +14,10 @@ export class PickuppointComponent implements OnInit {
   lng;
   area: string;
   model;
-  
-  ngOnInit() { }
-  hoveredDate: NgbDate;
   fromDate: NgbDate;
   toDate: NgbDate;
+  ngOnInit() { }
+  hoveredDate: NgbDate;
   time = new FormControl('');
   constructor(calendar: NgbCalendar,private route:Router) {
     this.fromDate = calendar.getToday();
@@ -47,6 +46,8 @@ export class PickuppointComponent implements OnInit {
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
+
+  
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {

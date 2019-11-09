@@ -1,4 +1,4 @@
-<div [hidden]="user">
+<!-- <div [hidden]="user">
   <h1>Sign In with Your Phone Number</h1>
 
   <label for="phone">Phone Number</label><br>
@@ -26,4 +26,32 @@
 
   UserId: {{ user?.uid }}
 
-</div>
+</div> -->
+
+
+<!-- <html>
+
+<body class="border">
+  <div class="container">
+    <form [formGroup]="form1" (ngSubmit)="imagesave()">
+
+      <input type="text" formControlName="name" /><br>
+      <input type="file" (change)="image($event)" accept="image/*"><br>
+      <input type="submit" value="submit" />
+      <input type="button" (click)="getData()" value="getimage" />
+    </form>
+
+  </div>
+  <img [src]="fetchimage(urlimage)">
+  
+</body>
+
+</html> -->
+
+
+
+<!-- <mat-sidenav-container>
+    <mat-sidenav mode='side' [(opened)]="opened">Sidenav content</mat-sidenav>
+    <mat-sidenav-content>Main content</mat-sidenav-content>
+  <button (click)="opened=!opened">toggle opened</button>
+  </mat-sidenav-container> -->

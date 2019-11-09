@@ -1,60 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { WindowService } from '../window.service';
-import * as firebase from 'firebase';
-import { PhoneNumber } from '../phonenumber';
-// import { AngularFireAuth } from '@angular/fire/auth';
-// import * as firebase from 'firebase/app';
+import { FormGroup, FormControl } from '@angular/forms';
+import { CarrentalserviceService } from '../carrentalservice.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-otpverify',
   templateUrl: './otpverify.component.html',
   styleUrls: ['./otpverify.component.css']
 })
+
 export class OtpverifyComponent implements OnInit {
+  info1:String; 
+  
+  urlimage;
+fileimage:any=File;
 
-  windowRef: any;
-
-  phoneNumber = new PhoneNumber()
-
-  verificationCode: string;
-
-  user: any;
-
-  constructor(private win: WindowService) { }
-
-  ngOnInit() {
-    firebase.initializeApp(firebase);
-    this.windowRef = this.win.windowRef
-    this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
-
-    this.windowRef.recaptchaVerifier.render()
-  }
+form1:FormGroup;
 
 
-  sendLoginCode() {
+  constructor(private s:CarrentalserviceService ,private s1: DomSanitizer) { 
+     this.form1 =new FormGroup({
 
-    const appVerifier = this.windowRef.recaptchaVerifier;
+    name: new FormControl()
+    });
+  console.log( );
+}
 
-    const num = this.phoneNumber.e164;
 
-    firebase.auth().signInWithPhoneNumber(num, appVerifier)
-            .then(result => {
+image(value)
+{
+const file= value.target.files[0];
 
-                this.windowRef.confirmationResult = result;
+this.fileimage=file;
 
-            })
-            .catch( error => console.log(error) );
+}
+ 
+imagesave()
+{
+const data=this.form1.value;
+const formdata= new FormData();
+formdata.append("data",JSON.stringify(data));
+formdata.append('image',this.fileimage);
+this.s.postimage(formdata).subscribe(data => {console.log(data)})
+}
 
-  }
+getData()
+{
 
-  verifyLoginCode() {
-    this.windowRef.confirmationResult
-                  .confirm(this.verificationCode)
-                  .then( result => {
+this.s.getimage(this.form1.value.name).subscribe(data =>{console.log(data);
 
-                    this.user = result.user;
+console.log(data.image)
+this.urlimage = 'data:image/jpeg;base64,' + data.image;
+console.log(this.urlimage);
+});
 
-    })
-    .catch( error => console.log(error, "Incorrect code entered?"));
-  }
+}
+
+fetchimage(url:string)
+{
+return this.s1.bypassSecurityTrustUrl(url);
+}
+
+
+
+  ngOnInit() {}
+  
 
 }
