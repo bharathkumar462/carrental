@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarrentalserviceService } from '../carrentalservice.service';
@@ -9,17 +9,22 @@ import { CarrentalserviceService } from '../carrentalservice.service';
   styleUrls: ['./pickuppoint.component.css']
 })
 export class PickuppointComponent implements OnInit {
-
+progressvalue=0;
   lat;
   lng;
   area: string;
   model;
   fromDate: NgbDate;
   toDate: NgbDate;
+  time = {hour: 13, minute: 30};
+  meridian = true;
+
+  toggleMeridian() {
+      this.meridian = !this.meridian;
+  }
   ngOnInit() { }
   hoveredDate: NgbDate;
-  time = new FormControl('');
-  constructor(calendar: NgbCalendar,private route:Router) {
+  constructor(calendar: NgbCalendar,private route:Router,private modalService: NgbModal) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -46,7 +51,6 @@ export class PickuppointComponent implements OnInit {
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
-
   
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -57,9 +61,22 @@ export class PickuppointComponent implements OnInit {
     }
   }
   onSubmit(){
-    sessionStorage.setItem('area',this.area);
+    let pickupdate=this.fromDate['day']+"/"+this.fromDate['month']+"/"+this.fromDate['year'];
+    let dropdate=this.toDate['day']+"/"+this.toDate['month']+"/"+this.toDate['year'];
+    let bookedtime=this.time['hour']+":"+this.time['minute'];
+    let data:any={
+      "pickupdate":pickupdate,
+      "dropdate":dropdate,
+      "bookedtime":bookedtime,
+      "area":this.area
+    }
+    console.log(data);
+    sessionStorage.setItem('data',JSON.stringify(data));
 this.route.navigate(['bookcars']);
-console.log(this.area);
   }
+  open(content) {
+    this.modalService.open(content);
+  }
+
 }
 

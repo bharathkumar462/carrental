@@ -6,9 +6,9 @@
     </div>
     <div class="modal-body">
 <form [formGroup]="customerform" (ngSubmit)="save()">
-    <input  style="margin-left:40px;"  type="radio" formControlName="admin" value="1">
+    <input  style="margin-left:40px;"  type="radio" formControlName="admin" value="true">
     <label >Admin</label>
-    <input style="margin-left:80px;" type="radio" formControlName="admin" value="0">
+    <input style="margin-left:80px;" type="radio" formControlName="admin" value="false">
     <label>Customer</label>
     <br>
     <label>First Name:</label>

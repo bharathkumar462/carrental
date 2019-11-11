@@ -13,12 +13,12 @@ import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { BookcarsComponent } from './bookcars/bookcars.component';
-import { OtpverifyComponent } from './otpverify/otpverify.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BookedcarsComponent } from './bookedcars/bookedcars.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PickuppointComponent,
     AdminpageComponent,
     BookcarsComponent,
-    OtpverifyComponent
+    BookedcarsComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,

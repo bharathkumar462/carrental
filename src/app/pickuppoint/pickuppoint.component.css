@@ -18,3 +18,11 @@
   .custom-day.faded {
     background-color: rgba(2, 117, 216, 0.5);
   }
+  img{
+    height: 50px;
+    width: 50px;
+  }
+  .form-control{
+width: 50px;
+height: 50px;
+  }

@@ -11,13 +11,8 @@ import {ViewChild,ElementRef,Renderer2} from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 name:string="unknown";
-  constructor(private modalService: NgbModal,private renderer:Renderer2) {}
-  @ViewChild('card',{static:false})card:ElementRef;
-  onMouseMove(event) {
-    let x = -(window.screen.width / 2 - event.screenX) / 10;
-    let y = (window.screen.height / 2 - event.screenY) / 7;
-    this.renderer.setStyle(this.card.nativeElement,'transform',`rotateY(${x}deg) rotateX(${y}deg)`);
-  }
+  constructor(private modalService: NgbModal) {}
+ 
   open() {
     this.modalService.open(LoginComponent,{size:'sm',scrollable:true});
   }
@@ -25,6 +20,6 @@ name:string="unknown";
     this.modalService.open(RegisterComponent,{size:'lg',scrollable:true});
   }
 
-  ngOnInit() { }
+  ngOnInit() { sessionStorage.clear();}
 
 }

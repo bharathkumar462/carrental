@@ -1,57 +1,82 @@
 <nav class="navbar bg-dark">
         <div class="navbar-header">
-                <a class="navbar-brand" href="#">CARRENTAL</a>
+                <a class="navbar-brand" placement="bottom" ngbTooltip="HOME" href="#">CARRENTAL</a>
+        </div>
+        <div class="navbar right">
+                <div><a><img src="assets/images/logout.png" placement="bottom" ngbTooltip="LOGOUT" routerLink="/welcome"></a></div>
         </div>
 </nav>
 
 <div id="firstimage">
         <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
         <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
-        <button style="margin-left:400px;height:50px;width: 500px;" class="btn btn-warning">
+        <button style="margin-left:400px;height:50px;width: 500px;" (click)="open(content)" class="btn btn-warning">
                 Add Cars</button>
 </div>
-<router-outlet></router-outlet>
 
+<ng-template #content let-modal>
+        <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+                <form [formGroup]="carslistfrom" (ngSubmit)="save()">
+                        <input class="form-control form-control-lg" type="number" formControlName="phonenumber">
+                        <br>
+                        <input class="form-control form-control-lg" type="text" formControlName="username"><br><br>
+                        <input class="form-control form-control-lg" type="text" formControlName="numberplate">
+                        <span *ngIf="carslistfrom.controls.numberplate.invalid">
+                                numberplate is required.
+                        </span><br>
+                        <label>availability:</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="availability" required>
+                        <span *ngIf="carslistfrom.controls.availability.invalid && carslistfrom.controls.availability.dirty">
+                                availability is required.
+                        </span>
+                        <br>
+                        <label>carname:</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="carname">
+                        <span *ngIf="carslistfrom.controls.carname.invalid">
+                                carname is required.
+                        </span><br> <br>
+                        <label>price:</label>
+                        <input class="form-control form-control-lg" type="number" formControlName="price">
+                        <span *ngIf="carslistfrom.controls.price.invalid">
+                                price is required.
+                        </span><br>
+                        <input type="file" (change)="image($event)" accept="image/*"><br>
+                        <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
+                </form>
+        </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+        </div>
+</ng-template>
 
+<button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button><br><hr>
+<div style="display:inline-block;" *ngFor="let c of carnoplate">
+        <button type="button" class="btn btn-outline-dark" value="c.numberplate" (click)="gettriplist(c)">{{c.numberplate}}</button>
+</div><br><hr>
 
-<!-- <input type="number" [(ngModel)]="lat" placeholder="enter the latitude">
-<input type="number" [(ngModel)]="lng" placeholder="enter the longitude">
-<button (click)="setCurrentLocation()">GET MY LOCATION</button>
-    <agm-map [latitude]="lat" [longitude]="lng" >
-                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-              </agm-map> -->
-
-<form [formGroup]="carslistfrom" (ngSubmit)="save()">
-
-        <label>availability:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="availability" required>
-        <span *ngIf="carslistfrom.controls.availability.invalid && carslistfrom.controls.availability.dirty">
-                availability is required.
-        </span>
-        <br>
-        <label>carname:</label>
-        <input class="form-control form-control-lg" type="text" formControlName="carname">
-        <span *ngIf="carslistfrom.controls.carname.invalid">
-                carname is required.
-        </span><br> <br>
-        <label>price:</label>
-        <input class="form-control form-control-lg" type="number" formControlName="price">
-        <span *ngIf="carslistfrom.controls.price.invalid">
-                price is required.
-        </span><br>
-        <input type="file" (change)="image($event)"  accept="image/*"><br>
-        <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
-</form>
-
-<!-- <label>availability:</label>
-<input class="form-control form-control-lg" type="text" [(ngModel)]="carslist.availability" >
-<br>
-<label>carname:</label>
-<input class="form-control form-control-lg" type="text"  [(ngModel)]="carslist.carname">
-
-<label>price:</label>
-<input class="form-control form-control-lg" type="number" [(ngModel)]="carslist.price">
-
-
-<button type="submit" class="btn btn-outline-success btn-block" (click)="save()">Submit</button> -->
-{{this.carslistfrom.value | json}}
+<div [hidden]="display">
+        <table>
+                <tr>
+                        <th>numberplate</th>
+                        <th>bookeddate</th>
+                        <th>bookedtime</th>
+                        <th>carname</th>
+                        <th>customername</th>
+                        <th>customerphonenumber</th>
+                </tr>
+                <tr *ngFor="let t of triplist">
+                        <td>{{t.numberplate}}</td>
+                        <td>{{t.bookeddate}}</td>
+                        <td>{{t.bookedtime}}</td>
+                        <td>{{t.carname}}</td>
+                        <td>{{t.username}}</td>
+                        <td>{{t.phonenumber}}</td>
+                </tr>
+        </table>
+</div>

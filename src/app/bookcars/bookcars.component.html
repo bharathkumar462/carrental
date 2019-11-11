@@ -1,6 +1,5 @@
-<p>bookcars works!</p>
-<p>{{cars | json}}</p>
-<div *ngFor="let c of cars">
+
+<!-- <div *ngFor="let c of cars">
   <div class="card border-danger text-white bg-dark mb-3" style="width:50%;background-color: brown">
     <img class="card-img-top" [src]="fetchimage(c.image)" alt="Card image cap">
     <div class="card-body">
@@ -8,25 +7,26 @@
       <p class="card-text">{{c.availability}}
         {{c.carname}}
         {{c.bookstatus}}
-        {{c.price}}</p>
-      <button [disabled]="c.bookstatus" class="btn btn-primary">BOOK</button>
+        {{c.price}}
+      {{c.numberplate}}</p>
+      <button [disabled]="c.bookstatus" class="btn btn-primary" (click)="save(c)">BOOK</button>
     </div>
-
-  </div>
-
-
-  <!-- <div class="card-deck">
+  </div> -->
+  <div> <a><img src="assets/images/home.png" placement="bottom" ngbTooltip="HOME" routerLink="/welcome"></a></div>
+<div class="container cardecks">
+  <div class="card-deck">
     <div *ngFor="let c of cars">
-        <div class="card border-danger text-white bg-dark mb-3" style="width:50%;background-color: brown">
-         
-          <div class="card-body">
-            <h5 class="card-title">{{c.carname}}</h5>
-            <p class="card-text">{{c.availability}}
+      <div class="card border-danger text-white bg-dark mb-3" style="width:50%; background-color: brown">
+        <img class="card-img-top center" [src]="fetchimage(c.image)" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{c.carname}}</h5>
+          <p class="card-text">{{c.availability}}
             {{c.carname}}
             {{c.bookstatus}}
-            {{c.price}}</p>
-            <button [disabled]="c.bookstatus" class="btn btn-primary">BOOK</button>
+            {{c.price}}
+            {{c.numberplate}}</p>
+          <button [disabled]="c.bookstatus" (click)="save(c)" class="btn btn-primary">BOOK</button>
         </div>
-        
       </div>
-  </div> -->
+    </div>
+  </div>

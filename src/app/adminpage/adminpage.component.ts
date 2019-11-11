@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CarrentalserviceService } from '../carrentalservice.service';
 import { CarsList } from '../carslist';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-adminpage',
@@ -13,14 +14,18 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./adminpage.component.css']
 })
 export class AdminpageComponent implements OnInit {
-  urlimage;
+  urlimage;carnoplate;
   fileimage: any = File;
   carslist: CarsList = new CarsList();
-
+  admin;triplist;
+  display=true;
   carslistfrom = new FormGroup({
     availability: new FormControl('', Validators.required),
     carname: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required)
+    price: new FormControl('', Validators.required),
+    numberplate: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required)
   });
   image(value) {
     const file = value.target.files[0];
@@ -29,41 +34,44 @@ export class AdminpageComponent implements OnInit {
 
   }
 
+  ngOnInit() {
+    this.admin = JSON.parse(sessionStorage.getItem('customer'));
+    this.carslistfrom.controls['phonenumber'].setValue(this.admin.phonenumber);
+    this.carslistfrom.controls['username'].setValue(this.admin.username);
+  }
+
   
 
-  // getData() {
 
-  //   this.s.getimage(this.form1.value.name).subscribe(data => {
-  //     console.log(data);
-
-  //     console.log(data.image)
-  //     this.urlimage = 'data:image/jpeg;base64,' + data.image;
-  //     console.log(this.urlimage);
-  //   });
-
-  // }
-
- 
- 
   save() {
-    const data=this.carslistfrom.value;
-    const formdata= new FormData();
-    formdata.append("data",JSON.stringify(data));
-    formdata.append('image',this.fileimage);
+    const data = this.carslistfrom.value;
+    const formdata = new FormData();
+    formdata.append("data", JSON.stringify(data));
+    formdata.append('image', this.fileimage);
     console.log(this.carslistfrom.value);
     this.addcarservice.addCars(formdata).subscribe(data => console.log(data));
   }
-  constructor(private addcarservice: CarrentalserviceService, private s1: DomSanitizer) { }
-  ngOnInit() { this.carslist.bookstatus = false; console.log(this.carslistfrom.value); }
-  // lat;
-  // lng;
-  // private setCurrentLocation() {
-  //   if ('geolocation' in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.lat = position.coords.latitude;
-  //       this.lng = position.coords.longitude;
-  //     });
-  //   }
-  // }
+  constructor(private addcarservice: CarrentalserviceService,private modalService: NgbModal) { }
+  open(content) {
+    this.modalService.open(content,{size:'lg',scrollable:true});
+  }
+ 
+  getcarno(){
+    console.log(this.admin.phonenumber);
+this.addcarservice.bookedcars(this.admin.phonenumber).subscribe(data=>
+  {
+    this.carnoplate=data;
+    console.log(data);
+    console.log(this.carnoplate);
+  })
+  }
+
+  gettriplist(data:any){
+    this.display=false;
+this.addcarservice.gettriplist(data.numberplate).subscribe(data=>
+  {
+    this.triplist=data;
+  })
+  }
 
 }
