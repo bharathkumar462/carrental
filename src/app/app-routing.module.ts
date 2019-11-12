@@ -6,6 +6,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { BookcarsComponent } from './bookcars/bookcars.component';
+import { BookedcarsComponent } from './bookedcars/bookedcars.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'pickuppoint', component: PickuppointComponent},
   { path: 'admin', component: AdminpageComponent},
-  { path: 'bookcars', component: BookcarsComponent}
+  { path: 'bookcars', component: BookcarsComponent},
+  { path: 'b', component:BookedcarsComponent}
 ];
 
 @NgModule({

@@ -1,1 +1,10 @@
-<p>bookedcars works!</p>
+<mat-drawer-container autosize>
+    <mat-drawer #drawer mode="side">
+        <p>Auto-resizing sidenav</p>
+    </mat-drawer>
+    <div class="side">
+        <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+        </button>
+    </div>
+</mat-drawer-container>

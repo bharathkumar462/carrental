@@ -23,3 +23,16 @@ img{
   table,tr,td,th{
       border: 2px solid black;
   }
+
+ .sidebar{
+     background-color: wheat;
+     color: white;
+ }
+ .carnoplates{
+     padding: 5px;
+ }
+ #adminphoto{
+    border-radius: 50%;
+     height: 100px;
+     width: 100px;
+ }

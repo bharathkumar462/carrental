@@ -1,40 +1,46 @@
 <div class="modal-header">
-        <h4 class="modal-title">Register Form</h4>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-<form [formGroup]="customerform" (ngSubmit)="save()">
-    <input  style="margin-left:40px;"  type="radio" formControlName="admin" value="true">
-    <label >Admin</label>
-    <input style="margin-left:80px;" type="radio" formControlName="admin" value="false">
-    <label>Customer</label>
-    <br>
-    <label>First Name:</label>
-    <input class="form-control form-control-lg" type="text" formControlName="username" required>
-    <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
-        firstName is required.
-    </span>
-    <br> 
-    <label>Phone Number:</label>
-    <input class="form-control form-control-lg" type="text" formControlName="phonenumber">
-    <span *ngIf="customerform.controls.phonenumber.invalid">
+    <h4 class="modal-title">Register Form</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="customerform" (ngSubmit)="save()">
+        <div class="radio-toolbar">   
+                <input type="radio" id="Customer" formControlName="admin" value="false">
+                <label style="width:200px;" for="Customer">Customer</label>       
+                <input type="radio" id="admin" formControlName="admin" value="true">
+                <label style="width:200px;" for="admin">admin</label>
+            </div>
+        <br>
+        <label>First Name:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="username" required>
+        <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
+            firstName is required.
+        </span>
+        <br>
+        <label>Phone Number:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="phonenumber">
+        <span *ngIf="customerform.controls.phonenumber.invalid">
             phoneNumber is required.
-    </span><br> <br>
-    <label>Password:</label>
-    <input class="form-control form-control-lg" type="text" formControlName="password">
-    <span *ngIf="customerform.controls.password.invalid">
+        </span><br> <br>
+        <label>Password:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="password">
+        <span *ngIf="customerform.controls.password.invalid">
             Password is required.
-    </span><br> <br>
-    <label>Re-Type Password:</label>
-    <input class="form-control form-control-lg" type="text" formControlName="repassword">
-    <span *ngIf="customerform.controls.repassword.invalid">
+        </span><br> <br>
+        <label>Re-Type Password:</label>
+        <input class="form-control form-control-lg" type="text" formControlName="repassword">
+        <span *ngIf="customerform.controls.repassword.invalid">
             Re-Type Password is required.
-    </span><br> <br>
-    <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
-</form>
+        </span><br> <br>
+        <label>Your Photo:</label>
+        <input type="file" (change)="image($event)" accept="image/*"><br>
+        <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
+    </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
+
+

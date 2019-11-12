@@ -4,7 +4,7 @@
     background-size:100% 100%;
     background-repeat: no-repeat;
 }
-p{
+.display-3{
     color: azure;
 }
 .card-text{
@@ -25,18 +25,95 @@ p{
 }
 .card{
     box-shadow: 0 0 5px rgba(20, 20, 20, .6);
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
 }
 
 .card-text {
     display: block;
-    -webkit-transform: translateZ(60px);
-            transform: translateZ(60px);
     font-style: italic;
     font-weight: bold;
 }
 .container{
     margin-top: 40px;
     margin-bottom:40px;
+}
+nav{
+    box-shadow: 0 0 5px rgba(13, 202, 69, 0.70);
+}
+#login{
+    margin-right: 40px;
+}
+img{
+    width:100px;
+    height: 100px;
+}
+
+
+.three-d {
+	perspective: 200px;
+	transition: all .07s linear;
+	position: relative;
+	cursor: pointer;
+}
+	/* complete the animation! */
+	.three-d:hover .three-d-box, 
+	.three-d:focus .three-d-box {
+		transform: translateZ(-25px) rotateX(90deg);
+	}
+
+.three-d-box {
+	transition: all .3s ease-out;
+	transform: translatez(-25px);
+	transform-style: preserve-3d;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 80px;
+	height: 40px;
+}
+
+/* 
+	put the "front" and "back" elements into place with CSS transforms, 
+	specifically translation and translatez
+*/
+.front {
+	transform: rotatex(0deg) translatez(25px);
+}
+
+.back {
+	transform: rotatex(-90deg) translatez(25px);
+	color: #ffe7c4;
+}
+
+.front, .back {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: black;
+	padding: 15px 10px;
+	color: white;
+	pointer-events: none;
+	box-sizing: border-box;
+}
+
+
+#advantage img{
+    width: 95px;
+    height: 95px;
+}
+/* .sticky {
+    background: white;
+    box-shadow: 0 3px 12px 0 rgba(0,0,0,.08);
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100%;
+} */
+
+#footer{
+    color: white;
 }

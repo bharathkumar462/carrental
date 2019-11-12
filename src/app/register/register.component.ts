@@ -17,13 +17,23 @@ export class RegisterComponent implements OnInit {
     repassword: new FormControl('',Validators.required),
     admin: new FormControl('',Validators.required)
   });
+  fileimage: any = File;
+  role;
   constructor(public activeModal: NgbActiveModal,private regservice:CarrentalserviceService,private modalService: NgbModal,private router:Router) { }
 
   ngOnInit() {
   }
 save(){
-this.regservice.createCustomer(this.customerform.value).subscribe(data => console.log(data), error => console.log(error));
+  const data = this.customerform.value;
+  const formdata = new FormData();
+  formdata.append("data", JSON.stringify(data));
+  formdata.append('image', this.fileimage);
+this.regservice.createCustomer(formdata).subscribe(data => console.log(data), error => console.log(error));
 this.activeModal.close();
 this.modalService.open(LoginComponent);
+}
+image(value) {
+  const file = value.target.files[0];
+  this.fileimage = file;
 }
 }

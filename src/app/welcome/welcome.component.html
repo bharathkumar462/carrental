@@ -1,122 +1,313 @@
-<nav class="navbar bg-dark">
-        <div class="navbar-header">
-                <a class="navbar-brand" href="#">CARRENTAL</a>
-        </div>
-        <div class="navbar right">
+<header>
+        <nav class="navbar bg-dark animated fadeInDown" id="navbar">
+                <div class="navbar-header">
+                        <a class="navbar-brand" href="#">CARRENTAL</a>
+                </div>
+                <!-- <div class="navbar right">
                 <p>{{name}}</p>
                 <p class="navbar-brand" (click)="open()">Login</p>
                 <p class="navbar-brand" (click)="open1()">Register</p>
+        </div> -->
+                <div class="navbar right">
+                        <a class="three-d" id="login" (click)="open()">
+                                Login
+                                <span aria-hidden="true" class="three-d-box">
+                                        <span class="front">Login</span>
+                                        <span class="back">Login</span>
+                                </span>
+                        </a>
+                        <a class="three-d" id="register" (click)="open1()">
+                                Register
+                                <span aria-hidden="true" class="three-d-box">
+                                        <span class="front">Register</span>
+                                        <span class="back">Register</span>
+                                </span>
+                        </a>
+                </div>
+        </nav>
+</header>
+<section class="web_homePage" (scroll)="onWindowScroll($event);">
+        <div id="firstimage">
+                <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
+                <p class="display-3"> JUST RENT CARS!!!</p>
+                <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start
+                                Your Journey</button></a>
         </div>
-</nav>
+        <router-outlet></router-outlet>
+        <div class="container">
+                <h2 style="font-weight: bold;text-align:center">THE CARRENTAL ADVANTAGE</h2>
+                <p style="color:black;text-align:center">We simplified car rentals, so you can focus on what's
+                        important to
+                        you.</p>
 
-<div id="firstimage">
-        <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
-        <p class="display-3"> JUST RENT CARS!!!</p>
-        <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start
-                        Your Journey</button></a>
-</div>
-<router-outlet></router-outlet>
-<div class="container">
-<h2 style="font-weight: bold;text-align:center">THE CARRENTAL ADVANTAGE</h2>
-<p style="color:black;text-align:center">We simplified car rentals, so you can focus on what's important to you.</p>
+                <div class="card-deck">
 
-        <div class="card-deck">
-
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/gas.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">Fuel Cost Included</h5>
-                                <p class="card-text">Don't worry about mileage! All fuel costs are included. If
-                                        you
-                                        refill fuel, we'll pay you back!.</p>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/gas.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">Fuel Cost Included</h5>
+                                        <p class="card-text">Don't worry about mileage! All fuel costs are included. If
+                                                you
+                                                refill fuel, we'll pay you back!.</p>
+                                </div>
                         </div>
-                </div>
 
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/rich.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">No Hidden Charges</h5>
-                                <p class="card-text">Our prices include taxes and insurance.
-                                        What you see is what you really pay!</p>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/rich.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">No Hidden Charges</h5>
+                                        <p class="card-text">Our prices include taxes and insurance.
+                                                What you see is what you really pay!</p>
 
+                                </div>
                         </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/order.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">Flexi Pricing Packages</h5>
-                                <p class="card-text">One size never fits all! Choose a balance of time and kilometers
-                                        that works best for you.</p>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/order.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">Flexi Pricing Packages</h5>
+                                        <p class="card-text">One size never fits all! Choose a balance of time and
+                                                kilometers
+                                                that works best for you.</p>
 
+                                </div>
                         </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/map-location.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">Go Anywhere</h5>
-                                <p class="card-text">Our cars have all-India permits.  Just remember to pay state tolls
-                                        and entry taxes.</p>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/map-location.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">Go Anywhere</h5>
+                                        <p class="card-text">Our cars have all-India permits.  Just remember to pay
+                                                state tolls
+                                                and entry taxes.</p>
 
+                                </div>
                         </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/route.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">24x7 Roadside Assistance</h5>
-                                <p class="card-text">We have round-the-clock, pan India partners. Help is never far
-                                        away from you.</p>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/route.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">24x7 Roadside Assistance</h5>
+                                        <p class="card-text">We have round-the-clock, pan India partners. Help is never
+                                                far
+                                                away from you.</p>
 
+                                </div>
                         </div>
-                </div>
-               
-        </div>
-</div>
-<div class="container" id="working">
-<h2 style="font-weight: bold;text-align:center">HOW CARRENTAL WORKS</h2>
-<p style="color:black;text-align:center">Drive yourself to an adventure and back in 5 simple steps</p>
 
-        <div class="card-deck">
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/bookcar.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">BOOK</h5>
-                                <p class="card-text">Search for and book a car on our site!</p>
-                        </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/travelcard.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">UPLOAD LICENSE</h5>
-                                <p class="card-text">Upload your driver’s license, and pay a small security deposit.</p>
-
-                        </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/unlock.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">UNLOCK</h5>
-                                <p class="card-text">We SMS your car details 20 minutes before pickup. Unlock it via
-                                        the Zoomcar app.</p>
-
-                        </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/carkey.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">GET KEYS</h5>
-                                <p class="card-text">Fill the start checklist in the Zoomcar app. Grab the keys from
-                                        the glove-box and drive.</p>
-
-                        </div>
-                </div>
-                <div class="card">
-                        <img class="card-img-top" src="assets/images/return.png" alt="Card image cap">
-                        <div class="card-body">
-                                <h5 class="card-title">RETURN</h5>
-                                <p class="card-text">Return the car to the same location and fill the end checklist to
-                                        end your trip.</p>
-
-                        </div>
                 </div>
         </div>
-</div>
+        <div class="container" id="working">
+                <h2 style="font-weight: bold;text-align:center">HOW CARRENTAL WORKS</h2>
+                <p style="color:black;text-align:center">Drive yourself to an adventure and back in 5 simple steps</p>
+
+                <div class="card-deck">
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/bookcar.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">BOOK</h5>
+                                        <p class="card-text">Search for and book a car on our site!</p>
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/travelcard.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">UPLOAD LICENSE</h5>
+                                        <p class="card-text">Upload your driver’s license, and pay a small security
+                                                deposit.</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/unlock.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">UNLOCK</h5>
+                                        <p class="card-text">We SMS your car details 20 minutes before pickup. Unlock
+                                                it via
+                                                the Zoomcar app.</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/carkey.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">GET KEYS</h5>
+                                        <p class="card-text">Fill the start checklist in the Zoomcar app. Grab the keys
+                                                from
+                                                the glove-box and drive.</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/return.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">RETURN</h5>
+                                        <p class="card-text">Return the car to the same location and fill the end
+                                                checklist to
+                                                end your trip.</p>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <div class="container text-center">
+                <img (click)="open1()" src="assets/images/sign-in.png"></div>
+
+        <div class="container" id="advantage">
+                <h2 style="font-weight: bold;text-align:center">WHY CARRENTAL </h2>
+
+                <div class="card-deck">
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/steering-wheel.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">3,000+</h5>
+                                        <p class="card-text">Rides Daily</p>
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/emoticon-with-happy-face.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">48,00,000+</h5>
+                                        <p class="card-text">Happy users</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/speedometer.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">360,00,000+</h5>
+                                        <p class="card-text">Km Travelled
+                                                (enough for 470 round trips to the moon!)</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/car-in-garage.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">6,500+</h5>
+                                        <p class="card-text">Number of Cars</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/customer.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">Rating 4.7/5.0</h5>
+                                        <p class="card-text">Rated by 3,00,000+ customers over 10,00,000+ bookings</p>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <footer class="page-footer font-small bg-dark blue pt-4" id="footer">
+                <div class="container-fluid text-center text-md-left">
+                        <div class="row">
+                                <div class="col-md-6 mt-md-0 mt-3">
+                                        <h5 class="text-uppercase">CARRENTAL</h5>
+                                        <p>Carrental is ready to serve you all the time.</p>
+                                </div>
+                                <hr class="clearfix w-100 d-md-none pb-3">
+                                <div class="col-md-3 mb-md-0 mb-3">
+                                        <h5 class="text-uppercase">About Us</h5>
+                                        <ul class="list-unstyled">
+                                                <li>
+                                                        <a href="#!">Link 1</a>
+                                                </li>
+                                                <li>
+                                                        <a href="#!">Link 2</a>
+                                                </li>
+                                                <li>
+                                                        <a href="#!">Link 3</a>
+                                                </li>
+                                                <li>
+                                                        <a href="#!">Link 4</a>
+                                                </li>
+                                        </ul>
+
+                                </div>
+                                <div class="col-md-3 mb-md-0 mb-3">
+                                        <h5 class="text-uppercase">Services</h5>
+                                        <ul class="list-unstyled">
+                                                <li>
+                                                        <a href="#!">Airport Service</a>
+                                                </li>
+                                                <li>
+                                                        <a href="#!">Domestic Service</a>
+                                                </li>
+                                                <li>
+                                                        <a href="#!">HillStation Service</a>
+                                                </li>
+                                                <li>
+                                                        <a href="#!">City Service</a>
+                                                </li>
+                                        </ul>
+
+                                </div>
+                        </div>
+
+                </div>
+                <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                        <a> Carrental.com</a>
+                </div>
+        </footer>
+
+        <div class="container">
+                <h2>SELF DRIVE CARS IN CHENNAI CITY</h2>
+                <p>Nicknamed as the Detroit of India,
+                        Chennai is the manufacturing hub of the automobile industry and is being developed as a smart
+                        city.
+                        In addition to the automobile industry,
+                        Chennai is also the home to other industries including power generation,
+                        banking, and software services. Rated by Forbes as being in the
+                        Top-10 fastest growing cities in the world, Chennai has seen a gradual increase in
+                        its working population and a corresponding increase in the number of
+                        Chennai car rental services and self drive cars, which are more affordable than
+                        self-owned or chauffeur-driven vehicles.</p>
+
+                <h2>CAR RENTAL IN CHENNAI</h2>
+                <p>Depending on the occasion and the number of passengers, Zoomcar allows you to hire a self-drive car
+                        of your
+                        choice, and at an affordable rate. Sign up on our website or mobile app, and decide on the
+                        rental
+                        duration, pickup location, and car type. You can use Zoomcar to select the right car for the
+                        right
+                        purpose in your city. For instance, you can choose a light car that can zip you through city
+                        traffic to
+                        your office location, or a comfortable car if you are planning a trip to Marina beach or a city
+                        tour.
+                        Alternatively, you can hire a powerful SUV for driving from Chennai to Pondicherry or Chennai
+                        to
+                        Tirupati with your family or friends. For frequent flyers, a Chennai airport taxi is the best
+                        option as
+                        it does away with the hassle of looking for buses or convincing taxi drivers to drive to a
+                        particular
+                        destination. Luxury self drive cars are also available for rent through Zoomcar. Depending on
+                        the
+                        occasion, you can hire one to attend a lavish wedding or for your anniversary
+                        celebration.Zoomcar
+                        offers affordable services and provides the car without any of the usual hassles of filling
+                        fuel,
+                        hidden cost, and breakdown problems.</p>
+
+                <h2>CAR HIRE IN CHENNAI</h2>
+                <p>Carrental vehicles have all-India permits and can be picked up at multiple parking sites across your
+                        city.
+                        Zoomcar also provides the flexibility of multiple packages, including the Zoom Lite, when you
+                        need the
+                        self drive car for a shorter distance and longer duration, and the Zoom XL for using your car
+                        for a
+                        longer distance over a shorter period.</p>
+
+                <h2>ABOUT Carrental</h2>
+                <p>No more worries about petrol mileage, fuel costs, insurance, and car breakdowns! Zoomcar has enabled
+                        driving
+                        convenience for travellers around the country and is fast expanding its reach to cities
+                        including
+                        Ahmedabad, Bangalore, Chandigarh, Chennai, Coimbatore, Delhi-NCR, Hyderabad, Jaipur, Kochi,
+                        Kolkata,
+                        Ludhiana, Mangalore, Mumbai, Mysore, Pune, Siliguri, Vizag, Nagpur, Udaipur, Vijayawada, Surat,
+                        Lucknow
+                        and Guwahati.
+                        Self drive cars from Zoomcar have given customers more control, privacy, and freedom. Book a
+                        self drive
+                        car in any city you visit with the Zoomcar app on your phone and feel at home wherever you go.</p>
+        </div>
+</section>

@@ -33,25 +33,26 @@ export class AdminpageComponent implements OnInit {
     this.fileimage = file;
 
   }
-
+  fetchimage(url:string)
+  {
+  return this.s1.bypassSecurityTrustUrl(url);
+  }
   ngOnInit() {
     this.admin = JSON.parse(sessionStorage.getItem('customer'));
+    this.admin.image='data:image/jpeg;base64,'+this.admin.image;
     this.carslistfrom.controls['phonenumber'].setValue(this.admin.phonenumber);
     this.carslistfrom.controls['username'].setValue(this.admin.username);
   }
-
-  
-
 
   save() {
     const data = this.carslistfrom.value;
     const formdata = new FormData();
     formdata.append("data", JSON.stringify(data));
     formdata.append('image', this.fileimage);
-    console.log(this.carslistfrom.value);
     this.addcarservice.addCars(formdata).subscribe(data => console.log(data));
   }
-  constructor(private addcarservice: CarrentalserviceService,private modalService: NgbModal) { }
+  constructor(private addcarservice: CarrentalserviceService,private s1: DomSanitizer,private modalService: NgbModal) { }
+
   open(content) {
     this.modalService.open(content,{size:'lg',scrollable:true});
   }

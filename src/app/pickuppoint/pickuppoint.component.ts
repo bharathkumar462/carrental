@@ -9,7 +9,7 @@ import { CarrentalserviceService } from '../carrentalservice.service';
   styleUrls: ['./pickuppoint.component.css']
 })
 export class PickuppointComponent implements OnInit {
-progressvalue=0;
+progressvalue=25;
   lat;
   lng;
   area: string;

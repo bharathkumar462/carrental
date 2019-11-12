@@ -13,43 +13,40 @@ import { AdminpageComponent } from '../adminpage/adminpage.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  status:boolean=false;
-  customer:any;
- 
+  status: boolean = false;
+  customer: any;
+
   customerform = new FormGroup({
-    phonenumber: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required)
-   
+    phonenumber: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+
   });
- 
-  constructor(public activeModal: NgbActiveModal,private modalService: NgbModal,
-    private lgnservice:CarrentalserviceService,private route:Router,private naming:AdminpageComponent){}
+
+  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
+    private lgnservice: CarrentalserviceService, private route: Router, private naming: AdminpageComponent) { }
   open() {
     this.modalService.open(ForgotpasswordComponent);
     this.activeModal.close();
   }
-  ngOnInit() {}
-    
-  check(){
-    
-    
-    this.lgnservice.checkCustomer(this.customerform.value).subscribe(data =>{
+  ngOnInit() { }
+
+  check() {
+    this.lgnservice.checkCustomer(this.customerform.value).subscribe(data => {
       console.log(data);
-      if(data != null){
-          this.customer=data;
-         console.log(this.customer);
-          sessionStorage.setItem('customer',JSON.stringify(this.customer));
-          if(this.customer.admin)
-          { 
-            this.activeModal.close();
-            this.route.navigate(['admin']);
-          }
-         else{
-           this.activeModal.close();
-           this.route.navigate(['pickuppoint']);
-          }  
-        }  
-         });
-    }
+      if (data != null) {
+        this.customer = data;
+        console.log(this.customer);
+        sessionStorage.setItem('customer', JSON.stringify(this.customer));
+        if (this.customer.admin) {
+          this.activeModal.close();
+          this.route.navigate(['admin']);
+        }
+        else {
+          this.activeModal.close();
+          this.route.navigate(['pickuppoint']);
+        }
+      }
+    });
+  }
 
 }
