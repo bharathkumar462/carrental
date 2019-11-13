@@ -1,10 +1,32 @@
-<mat-drawer-container autosize>
-    <mat-drawer #drawer mode="side">
-        <p>Auto-resizing sidenav</p>
-    </mat-drawer>
-    <div class="side">
-        <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
-        </button>
-    </div>
-</mat-drawer-container>
+<ngb-carousel interval="1000">
+    <ng-template ngbSlide>
+        <div class="card">
+            <img class="card-img-top" src="assets/images/steering-wheel.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">3,000+</h5>
+                <p class="card-text">Rides Daily</p>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <div class="card">
+            <img class="card-img-top" src="assets/images/emoticon-with-happy-face.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">48,00,000+</h5>
+                <p class="card-text">Happy users</p>
+
+            </div>
+        </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <div class="card">
+            <img class="card-img-top" src="assets/images/speedometer.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">360,00,000+</h5>
+                <p class="card-text">Km Travelled
+                    (enough for 470 round trips to the moon!)</p>
+
+            </div>
+        </div>
+    </ng-template>
+</ngb-carousel>

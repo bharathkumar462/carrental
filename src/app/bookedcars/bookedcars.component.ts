@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-bookedcars',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookedcarsComponent implements OnInit {
 
-  constructor() { }
+  
 
-  ngOnInit() {
-  }
+  constructor() {}
 
+  ngOnInit() {}
+
+
+
+
+
+ 
 }
+

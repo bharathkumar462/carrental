@@ -1,4 +1,3 @@
-
 <div class="modal-header">
     <h4 class="modal-title">Login</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -6,33 +5,67 @@
     </button>
 </div>
 <div class="modal-body">
-        <div [hidden]="status">
-     <form [formGroup]="customerform" (ngSubmit)="check()">
-        <!-- <label>First Name:</label>
+    <div class="promocards">
+        <ngb-carousel interval="1000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+            <ng-template ngbSlide>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/promo1.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">SUPERMILERS CLUB</h5>
+                        <p class="card-text">Your Zoomcar experience is much more rewarding when you become our
+                            Supermilers Club Member.</p>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/referral.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">REFER & EARN</h5>
+                        <p class="card-text">Refer or invite your friends to zoomcar and earn free rides, free Z points
+                            and more.</p>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ngbSlide>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/gas-station.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">FREE FUEL</h5>
+                        <p class="card-text">The fuel is on us for your complete trip.  In case you re-fuel a zoomcar,
+                            we will re-fill your pockets and that’s a promise.</p>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <div class="regform">
+        <form [formGroup]="customerform" (ngSubmit)="check()">
+            <!-- <label>First Name:</label>
         <div class="usericon"><img src="assets/images/users.png">
         <input  class="form-control form-control-lg" type="text" formControlName="username" >
         <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
             firstName is required.
         </span> </div><br> -->
-        <label>Phone Number:</label>
-        <div class="usericon"><img src="assets/images/mobile-app.png">
-        <input class="form-control" type="text" formControlName="phonenumber">
-        <span *ngIf="customerform.controls.phonenumber.invalid">
-            phoneNumber is required.
-        </span></div><br> <br>
-        <label>Password:</label>
-        <div class="usericon"><img src="assets/images/key.png">
-        <input class="form-control" type="text" formControlName="password">
-        <span *ngIf="customerform.controls.password.invalid">
-            Password is required.
-        </span></div><br> <br>
-        <button type="submit" class="btn btn-outline-success">Submit</button>
-        <button type="button" class="btn btn-outline-danger" (click)="open()">ForgotPassword</button>
-    </form> 
+            <mat-form-field>
+                <input matInput placeholder="Phone Number" type="number" formControlName="phonenumber" class="example-right-align">
+                <span matPrefix><i class="material-icons">phone</i></span>
+            </mat-form-field>
+            <span *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.dirty">
+                phoneNumber is required.
+            </span><br> <br>
+            <mat-form-field>
+                <input matInput placeholder="Password" type="password" formControlName="password" class="example-right-align">
+                <span matPrefix><i class="material-icons">lock</i></span>
+            </mat-form-field>
+            <span *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">
+                Password is required.
+            </span>
+            <br> <br>
+            <button type="submit" mat-raised-button>Submit</button>
+            <button type="button" mat-raised-button color="warn" (click)="open()">ForgotPassword</button>
+        </form>
     </div>
-    <div [hidden]="!status">Successful</div>
-</div>
-<div class="modal-footer">
-       
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+
+    
 </div>

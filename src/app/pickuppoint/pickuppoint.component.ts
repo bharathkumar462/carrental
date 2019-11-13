@@ -3,28 +3,39 @@ import { NgbDate, NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarrentalserviceService } from '../carrentalservice.service';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-pickuppoint',
   templateUrl: './pickuppoint.component.html',
   styleUrls: ['./pickuppoint.component.css']
 })
 export class PickuppointComponent implements OnInit {
-progressvalue=25;
-  lat;
-  lng;
+  progressvalue = 25;
+  lat = 43.879078;
+  lng = -103.4615581;
   area: string;
   model;
   fromDate: NgbDate;
-  toDate: NgbDate;
-  time = {hour: 13, minute: 30};
+  toDate: NgbDate; hoveredDate: NgbDate;
+  time = { hour: 13, minute: 30 };
   meridian = true;
+customer;
+reverseValue(){
+  this.progressvalue=(this.progressvalue)-50;
+}
+progressValue(){
+  this.progressvalue=(this.progressvalue)+50;
+}
 
   toggleMeridian() {
-      this.meridian = !this.meridian;
+    this.meridian = !this.meridian;
   }
-  ngOnInit() { }
-  hoveredDate: NgbDate;
-  constructor(calendar: NgbCalendar,private route:Router,private modalService: NgbModal) {
+  ngOnInit() {
+    this.customer = JSON.parse(sessionStorage.getItem('customer'));
+    this.customer.image = 'data:image/jpeg;base64,' + this.customer.image;
+   }
+ 
+  constructor(calendar: NgbCalendar,  private s1: DomSanitizer,private route: Router, private modalService: NgbModal) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -51,7 +62,7 @@ progressvalue=25;
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
-  
+
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -60,23 +71,31 @@ progressvalue=25;
       });
     }
   }
-  onSubmit(){
-    let pickupdate=this.fromDate['day']+"/"+this.fromDate['month']+"/"+this.fromDate['year'];
-    let dropdate=this.toDate['day']+"/"+this.toDate['month']+"/"+this.toDate['year'];
-    let bookedtime=this.time['hour']+":"+this.time['minute'];
-    let data:any={
-      "pickupdate":pickupdate,
-      "dropdate":dropdate,
-      "bookedtime":bookedtime,
-      "area":this.area
+  onSubmit() {
+    let pickupdate = this.fromDate['day'] + "/" + this.fromDate['month'] + "/" + this.fromDate['year'];
+    let dropdate = this.toDate['day'] + "/" + this.toDate['month'] + "/" + this.toDate['year'];
+    let bookedtime = this.time['hour'] + ":" + this.time['minute'];
+    let data: any = {
+      "pickupdate": pickupdate,
+      "dropdate": dropdate,
+      "bookedtime": bookedtime,
+      "area": this.area
     }
     console.log(data);
-    sessionStorage.setItem('data',JSON.stringify(data));
-this.route.navigate(['bookcars']);
+    sessionStorage.setItem('data', JSON.stringify(data));
+    this.route.navigate(['bookcars']);
   }
   open(content) {
     this.modalService.open(content);
   }
 
+  changecoords(a,b){
+    this.lat=a;
+    this.lng=b;
+  }
+
+  fetchimage(url: string) {
+    return this.s1.bypassSecurityTrustUrl(url);
+  }
 }
 

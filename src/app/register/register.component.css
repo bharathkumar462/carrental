@@ -39,3 +39,25 @@ background-color: rgb(248, 239, 239);
       border-color: #4c4;
   }
   
+  .regform{
+      display: block;
+      float: right;
+  }
+  .promocards{
+    display: block;
+    float: left;
+  }
+  img{
+    width: 200px;
+    height: 200px;
+  }
+  .card{
+    box-shadow: 0 0 5px rgba(20, 20, 20, .6);
+    background-color: white;
+    width: 250px;
+    height: 400px;
+    border: 0;
+  }
+ span{
+     color: red;
+ }

@@ -10,8 +10,7 @@
 .card-text{
     color:black;
 }
-.card-img-top{
-    
+.card-img-top{ 
     width: 200px;
     height: 200px;
 }
@@ -105,15 +104,17 @@ img{
     width: 95px;
     height: 95px;
 }
-/* .sticky {
+.sticky {
     background: white;
     box-shadow: 0 3px 12px 0 rgba(0,0,0,.08);
-    position: fixed;
+	position: fixed;
+	z-index:1;
     top: 0;
     height: 80px;
     width: 100%;
-} */
+}
 
 #footer{
     color: white;
 }
+

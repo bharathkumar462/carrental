@@ -62,6 +62,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import {MatTreeModule} from '@angular/material/tree';
     PickuppointComponent,
     AdminpageComponent,
     BookcarsComponent,
-    BookedcarsComponent
+    BookedcarsComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,NgbModule,ReactiveFormsModule,

@@ -12,7 +12,7 @@ import { LoginComponent } from '../login/login.component';
 export class RegisterComponent implements OnInit {
   customerform = new FormGroup({
     username: new FormControl('',Validators.required),
-    phonenumber: new FormControl('',Validators.required),
+    phonenumber: new FormControl('',[Validators.required,Validators.minLength(10)]),
     password: new FormControl('',Validators.required),
     repassword: new FormControl('',Validators.required),
     admin: new FormControl('',Validators.required)

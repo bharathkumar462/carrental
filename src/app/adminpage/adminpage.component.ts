@@ -14,11 +14,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./adminpage.component.css']
 })
 export class AdminpageComponent implements OnInit {
-  urlimage;carnoplate;
+  urlimage; carnoplate;
   fileimage: any = File;
   carslist: CarsList = new CarsList();
-  admin;triplist;
-  display=true;
+  admin; triplist;
+  display = true;
   carslistfrom = new FormGroup({
     availability: new FormControl('', Validators.required),
     carname: new FormControl('', Validators.required),
@@ -33,17 +33,15 @@ export class AdminpageComponent implements OnInit {
     this.fileimage = file;
 
   }
-  fetchimage(url:string)
-  {
-  return this.s1.bypassSecurityTrustUrl(url);
+  fetchimage(url: string) {
+    return this.s1.bypassSecurityTrustUrl(url);
   }
   ngOnInit() {
     this.admin = JSON.parse(sessionStorage.getItem('customer'));
-    this.admin.image='data:image/jpeg;base64,'+this.admin.image;
+    this.admin.image = 'data:image/jpeg;base64,' + this.admin.image;
     this.carslistfrom.controls['phonenumber'].setValue(this.admin.phonenumber);
     this.carslistfrom.controls['username'].setValue(this.admin.username);
   }
-
   save() {
     const data = this.carslistfrom.value;
     const formdata = new FormData();
@@ -51,28 +49,26 @@ export class AdminpageComponent implements OnInit {
     formdata.append('image', this.fileimage);
     this.addcarservice.addCars(formdata).subscribe(data => console.log(data));
   }
-  constructor(private addcarservice: CarrentalserviceService,private s1: DomSanitizer,private modalService: NgbModal) { }
+  constructor(private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
 
   open(content) {
-    this.modalService.open(content,{size:'lg',scrollable:true});
-  }
- 
-  getcarno(){
-    console.log(this.admin.phonenumber);
-this.addcarservice.bookedcars(this.admin.phonenumber).subscribe(data=>
-  {
-    this.carnoplate=data;
-    console.log(data);
-    console.log(this.carnoplate);
-  })
+    this.modalService.open(content, { size: 'lg', scrollable: true });
   }
 
-  gettriplist(data:any){
-    this.display=false;
-this.addcarservice.gettriplist(data.numberplate).subscribe(data=>
-  {
-    this.triplist=data;
-  })
+  getcarno() {
+    console.log(this.admin.phonenumber);
+    this.addcarservice.bookedcars(this.admin.phonenumber).subscribe(data => {
+      this.carnoplate = data;
+      console.log(data);
+      console.log(this.carnoplate);
+    })
+  }
+
+  gettriplist(data: any) {
+    this.display = false;
+    this.addcarservice.gettriplist(data.numberplate).subscribe(data => {
+      this.triplist = data;
+    })
   }
 
 }

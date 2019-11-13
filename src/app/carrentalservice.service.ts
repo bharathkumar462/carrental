@@ -43,5 +43,14 @@ gettriplist(data:any):Observable<any>{
  
   return this.http.post(this.baseUrl+"cars/triplists",data);
   }
-  
+  isAuthenticated():boolean{
+return sessionStorage.getItem('customer') !== null;
+  }
+
+  isAdmin():boolean{
+    if(sessionStorage.getItem('customer') !== null){
+    let data=JSON.parse(sessionStorage.getItem('customer'))
+    if(data.admin){return true;}
+    }
+  }
 }
