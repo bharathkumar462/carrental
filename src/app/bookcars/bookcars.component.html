@@ -1,3 +1,11 @@
+<nav class="navbar bg-dark">
+  <div>
+    <a class="navbar-brand" placement="bottom" ngbTooltip="CARRENTAL" href="#">CARRENTAL</a>
+  </div>
+  <div class="navbar right">
+    <img id="home" src="assets/images/home.png" placement="bottom" ngbTooltip="HOME" routerLink="/welcome">
+  </div>
+</nav>
 
 <!-- <div *ngFor="let c of cars">
   <div class="card border-danger text-white bg-dark mb-3" style="width:50%;background-color: brown">
@@ -8,25 +16,68 @@
         {{c.carname}}
         {{c.bookstatus}}
         {{c.price}}
-      {{c.numberplate}}</p>
+        {{c.numberplate}}</p>
       <button [disabled]="c.bookstatus" class="btn btn-primary" (click)="save(c)">BOOK</button>
     </div>
   </div> -->
-  <div> <a><img src="assets/images/home.png" placement="bottom" ngbTooltip="HOME" routerLink="/welcome"></a></div>
-<div class="container cardecks">
-  <div class="card-deck">
+<div class="container">
+  <div class="carlist">
     <div *ngFor="let c of cars">
-      <div class="card border-danger text-white bg-dark mb-3" style="width:50%; background-color: brown">
-        <img class="card-img-top center" [src]="fetchimage(c.image)" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{c.carname}}</h5>
-          <p class="card-text">{{c.availability}}
-            {{c.carname}}
-            {{c.bookstatus}}
-            {{c.price}}
-            {{c.numberplate}}</p>
-          <button [disabled]="c.bookstatus" (click)="save(c)" class="btn btn-primary">BOOK</button>
+      <div class="card mb-3" style="max-width: 800px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img [src]="fetchimage(c.image)" class="card-img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{c.carname | uppercase}}</h5>
+              <div>
+                <p class="card-text"> PRICE</p>
+                <p class="card-text"> NUMBERPLATE</p>
+              </div>
+              <div>
+                <p class="card-text"> {{c.price}}</p>
+                <p class="card-text"> {{c.numberplate}}</p>
+              </div>
+              <button [disabled]="c.bookstatus" class="btn btn-primary" (click)="save(c)">BOOK</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="carddecks">
+    <div class="card-deck">
+      <div class="card border-danger text-white mb-3">
+        <div class="card-body">
+          <h5 class="card-title">PICKUP DATE:</h5>
+          <p class="card-text">{{details.pickupdate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-deck">
+      <div class="card border-danger text-white mb-3">
+        <div class="card-body">
+          <h5 class="card-title">DROP DATE:</h5>
+          <p class="card-text">{{details.dropdate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-deck">
+      <div class="card border-danger text-white mb-3">
+        <div class="card-body">
+          <h5 class="card-title">PICKUP TIME:</h5>
+          <p class="card-text">{{details.bookedtime}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-deck">
+        <div class="card border-danger text-white mb-3">
+          <div class="card-body">
+            <h5 class="card-title">PICKUP AREA:</h5>
+            <p class="card-text">{{details.area | uppercase}}</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

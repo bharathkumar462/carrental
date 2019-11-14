@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
     private lgnservice: CarrentalserviceService, private route: Router, private naming: AdminpageComponent) { }
-  open() {
+  open() {  
     this.modalService.open(ForgotpasswordComponent);
     this.activeModal.close();
   }

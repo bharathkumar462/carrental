@@ -11,7 +11,6 @@ export class CarrentalserviceService {
   createCustomer(customer: object): Observable<Object> {
     return this.http.post(`${this.baseUrl}` + `customers/create`, customer);
   }
-
   checkCustomer(customer: object): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `customers/authenticate`, customer);
   }
@@ -28,29 +27,34 @@ export class CarrentalserviceService {
     return this.http.post(`${this.baseUrl}` + `cars/getbyavailability`, area);
   }
 
-bookcars(data:any):Observable<any>{
- 
-  return this.http.post(this.baseUrl+"bookcars/add",data);
-}
-bookedcars(bookedcar:any):Observable<any>{
-  return this.http.post(this.baseUrl+"cars/bookedcarslist",bookedcar);
-}
-updatestatus(cars:any):Observable<any>{
- 
-return this.http.post(this.baseUrl+"cars/updatestatus",cars);
-}
-gettriplist(data:any):Observable<any>{
- 
-  return this.http.post(this.baseUrl+"cars/triplists",data);
+  bookcars(data: any): Observable<any> {
+
+    return this.http.post(this.baseUrl + "bookcars/add", data);
   }
-  isAuthenticated():boolean{
-return sessionStorage.getItem('customer') !== null;
+  bookedcars(bookedcar: any): Observable<any> {
+    return this.http.post(this.baseUrl + "cars/bookedcarslist", bookedcar);
+  }
+  updatestatus(cars: any): Observable<any> {
+
+    return this.http.post(this.baseUrl + "cars/updatestatus", cars);
+  }
+  gettriplist(data: any): Observable<any> {
+
+    return this.http.post(this.baseUrl + "cars/triplists", data);
+  }
+  isAuthenticated(): boolean {
+    return sessionStorage.getItem('customer') !== null;
   }
 
-  isAdmin():boolean{
-    if(sessionStorage.getItem('customer') !== null){
-    let data=JSON.parse(sessionStorage.getItem('customer'))
-    if(data.admin){return true;}
+  isAdmin(): boolean {
+    if (sessionStorage.getItem('customer') !== null) {
+      let data = JSON.parse(sessionStorage.getItem('customer'))
+      if (data.admin) { return true; }
     }
   }
+
+  otpverify(otp:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}customers/otpverify/${otp}`);
+  }
 }
+ 

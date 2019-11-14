@@ -19,13 +19,13 @@ export class PickuppointComponent implements OnInit {
   toDate: NgbDate; hoveredDate: NgbDate;
   time = { hour: 13, minute: 30 };
   meridian = true;
-customer;
-reverseValue(){
-  this.progressvalue=(this.progressvalue)-50;
-}
-progressValue(){
-  this.progressvalue=(this.progressvalue)+50;
-}
+  customer;
+  reverseValue() {
+    this.progressvalue = (this.progressvalue) - 50;
+  }
+  progressValue() {
+    this.progressvalue = (this.progressvalue) + 50;
+  }
 
   toggleMeridian() {
     this.meridian = !this.meridian;
@@ -33,9 +33,9 @@ progressValue(){
   ngOnInit() {
     this.customer = JSON.parse(sessionStorage.getItem('customer'));
     this.customer.image = 'data:image/jpeg;base64,' + this.customer.image;
-   }
- 
-  constructor(calendar: NgbCalendar,  private s1: DomSanitizer,private route: Router, private modalService: NgbModal) {
+  }
+
+  constructor(calendar: NgbCalendar, private s1: DomSanitizer, private route: Router, private modalService: NgbModal) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -89,9 +89,9 @@ progressValue(){
     this.modalService.open(content);
   }
 
-  changecoords(a,b){
-    this.lat=a;
-    this.lng=b;
+  changecoords(a, b) {
+    this.lat = a;
+    this.lng = b;
   }
 
   fetchimage(url: string) {
