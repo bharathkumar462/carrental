@@ -77,9 +77,17 @@
             <span *ngIf="customerform.controls.repassword.invalid && customerform.controls.repassword.dirty">
                 Re-Type Password is required.
             </span><br>
+            <mat-form-field>
+                    <input matInput placeholder="emailid" type="text" formControlName="email" class="example-right-align">
+                    <span matPrefix><i class="material-icons">mail</i></span>
+                </mat-form-field>
+                <span *ngIf="customerform.controls.email.invalid && customerform.controls.email.dirty">
+                        email is required.
+                </span><br>
             <label>Your Photo:</label>
             <input type="file" (change)="image($event)" accept="image/*"><br>
             <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!customerform.valid">Submit</button>
         </form>
+        {{this.customerform.value | json}}
     </div>
 </div>
