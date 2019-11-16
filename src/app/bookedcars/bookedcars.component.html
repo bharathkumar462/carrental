@@ -1,32 +1,59 @@
-<ngb-carousel interval="1000">
-    <ng-template ngbSlide>
-        <div class="card">
-            <img class="card-img-top" src="assets/images/steering-wheel.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">3,000+</h5>
-                <p class="card-text">Rides Daily</p>
-            </div>
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="card">
-            <img class="card-img-top" src="assets/images/emoticon-with-happy-face.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">48,00,000+</h5>
-                <p class="card-text">Happy users</p>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
 
-            </div>
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="card">
-            <img class="card-img-top" src="assets/images/speedometer.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">360,00,000+</h5>
-                <p class="card-text">Km Travelled
-                    (enough for 470 round trips to the moon!)</p>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
 
-            </div>
-        </div>
-    </ng-template>
-</ngb-carousel>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> numberplate </th>
+            <td mat-cell *matCellDef="let row"> {{row.numberplate}} </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookeddate </th>
+            <td mat-cell *matCellDef="let row"> {{row.bookeddate}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookedtime </th>
+            <td mat-cell *matCellDef="let row"> {{row.bookedtime}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> carname </th>
+            <td mat-cell *matCellDef="let row"> {{row.carname}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="color">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Bookstatus </th>
+            <td mat-cell *matCellDef="let row" [style.color]="green"> {{row.bookstatus}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<table>
+    <tr>
+        <th>numberplate</th>
+        <th>bookeddate</th>
+        <th>bookedtime</th>
+        <th>carname</th>
+        <th>Bookstatus</th>
+    </tr>
+    <tr *ngFor="let t of triplist">
+        <td>{{t.numberplate}}</td>
+        <td>{{t.bookeddate}}</td>
+        <td>{{t.bookedtime}}</td>
+        <td>{{t.carname}}</td>
+        <td>{{t.bookstatus}}</td>
+    </tr>
+</table>

@@ -13,9 +13,9 @@ export class RegisterComponent implements OnInit {
   customerform = new FormGroup({
     username: new FormControl('',Validators.required),
     phonenumber: new FormControl('',[Validators.required,Validators.minLength(10)]),
-    password: new FormControl('',Validators.required),
-    repassword: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
+    password: new FormControl('',[Validators.required,Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")]),
+    repassword: new FormControl('',[Validators.required,Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")]),
+    email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z.-]+.[a-z]{2,4}$")]),
     admin: new FormControl('',Validators.required)
   });
   fileimage: any = File;

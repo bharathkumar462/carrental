@@ -10,15 +10,12 @@
             <img src="assets/images/home.png" placement="bottom" ngbTooltip="HOME" routerLink="/welcome">
         </div>
     </nav>
-    <hr>
-    <div class="container">
-        <p>
-            <ngb-progressbar type="success" [value]="progressvalue" [striped]="true"></ngb-progressbar>
-        </p>
+    <div [hidden]="status" class="container">
+        <ngb-progressbar type="success" [value]="progressvalue" [striped]="true"></ngb-progressbar>
         <mat-horizontal-stepper #stepper>
             <mat-step>
                 <div class="location">
-                    <ng-template matStepLabel >Fill out your location</ng-template>
+                    <ng-template matStepLabel>Fill out your location</ng-template>
                     <h2>Tell us your Starting Point</h2>
                     <div class="input-group input-group-lg">
                         <input class="form-control" type="text" [(ngModel)]="area" autocomplete placeholder="Enter the area location">
@@ -29,15 +26,13 @@
                             </button>
                         </div>
                     </div>
-                    <nav class="navbar fixed-bottom navbar-light bg-dark">
-                        <button mat-flat-button matStepperNext (click)="progressValue()">Next</button>
-                    </nav>
+                    <button mat-flat-button class="btn btn-primary btn-lg" matStepperNext (click)="progressValue()">Next</button>
                 </div>
             </mat-step>
             <mat-step>
                 <br><br>
                 <div>
-                    <ng-template matStepLabel >Fill out your pick date</ng-template>
+                    <ng-template matStepLabel>Fill out your pick date</ng-template>
                     <h2>From when do you need a car?</h2>
                     <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
                         outsideDays="hidden">
@@ -49,11 +44,8 @@
                         </span>
                     </ng-template>
                     <hr>
-                    <nav class="navbar fixed-bottom navbar-light bg-dark">
-                        <button mat-flat-button matStepperPrevious (click)="reverseValue()">Back</button>
-                        <button mat-flat-button matStepperNext (click)="progressValue()">Next</button>
-                    </nav>
-
+                    <button mat-flat-button class="btn btn-primary btn-lg" matStepperPrevious (click)="reverseValue()">Back</button>
+                    <button mat-flat-button class="btn btn-primary btn-lg" matStepperNext (click)="progressValue()">Next</button>
                 </div>
             </mat-step>
             <mat-step>
@@ -61,45 +53,79 @@
                     <ng-template matStepLabel>Fill out your pick time</ng-template>
                     <h2>Time?</h2>
                     <ngb-timepicker [(ngModel)]="time" meridian="true"></ngb-timepicker>
-                    <hr>
-                    <hr>
-                    <button class="btn btn-outline-success" (click)="onSubmit()">submit</button>
-                    <nav class="navbar fixed-bottom navbar-light bg-dark">
-                        <button mat-flat-button matStepperPrevious (click)="reverseValue()">Back</button>
-                    </nav>
+                    <button class="btn btn-lg btn-outline-success" (click)="onSubmit()">submit</button>
                 </div>
             </mat-step>
         </mat-horizontal-stepper>
     </div>
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">POINT YOUR LOCATION</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <mat-form-field>
-                <input matInput type="number" [(ngModel)]="lat" placeholder="enter the latitude">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="number" [(ngModel)]="lng" placeholder="enter the longitude">
-            </mat-form-field>
-            <button (click)="setCurrentLocation()">GET MY LOCATION</button>
-            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="changecoords($event.coords.lat, $event.coords.lng)">
-                <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true"></agm-marker>
-            </agm-map>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-        </div>
-    </ng-template>
 
-
+    <div [hidden]="!status" class="container">
+            <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                       
+                        <ng-container matColumnDef="numberplate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> numberplate </th>
+                            <td mat-cell *matCellDef="let row"> {{row.numberplate}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="bookeddate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookeddate </th>
+                            <td mat-cell *matCellDef="let row"> {{row.bookeddate}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="bookedtime">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookedtime </th>
+                            <td mat-cell *matCellDef="let row"> {{row.bookedtime}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="carname">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> carname </th>
+                            <td mat-cell *matCellDef="let row"> {{row.carname}} </td>
+                        </ng-container>
+                
+                        <ng-container matColumnDef="bookstatus">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
+                            <td mat-cell *matCellDef="let row" [style.color]="green"> {{row.bookstatus}} </td>
+                        </ng-container>
+                
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                        </tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+        <button type="button" class="btn btn-outline-dark" (click)="getcarno()">BACK</button>
+    </div>
 
     <mat-drawer #drawer class="sidebar" mode="side">
         <img id="customerphoto" class="text-center" [src]="fetchimage(customer.image)"><br>
         <hr>
         <button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button>
     </mat-drawer>
+
+
 </mat-drawer-container>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">POINT YOUR LOCATION</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <mat-form-field>
+            <input matInput type="number" [(ngModel)]="lat" placeholder="enter the latitude">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" [(ngModel)]="lng" placeholder="enter the longitude">
+        </mat-form-field>
+        <button (click)="setCurrentLocation()">GET MY LOCATION</button>
+        <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="changecoords($event.coords.lat, $event.coords.lng)">
+            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true"></agm-marker>
+        </agm-map>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

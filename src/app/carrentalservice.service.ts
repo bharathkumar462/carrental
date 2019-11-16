@@ -52,9 +52,12 @@ export class CarrentalserviceService {
       if (data.admin) { return true; }
     }
   }
-
   otpverify(otp:number):Observable<any>{
     return this.http.get(`${this.baseUrl}customers/otpverify/${otp}`);
+  }
+  mytriplist(data:any): Observable<any> {
+
+    return this.http.post(this.baseUrl + "customers/triplists", data);
   }
 }
  

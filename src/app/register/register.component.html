@@ -64,18 +64,18 @@
                 phoneNumber is required.
             </span><br>
             <mat-form-field>
-                <input matInput placeholder="Password" type="password" formControlName="password" class="example-right-align">
+                <input matInput placeholder="Password" type="text" formControlName="password" class="example-right-align">
                 <span matPrefix><i class="material-icons">lock</i></span>
             </mat-form-field>
             <span *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">
-                Password is required.
+                * should be combination of all cases and numbers.
             </span><br>
             <mat-form-field>
                 <input matInput placeholder="Re-Type Password" type="password" formControlName="repassword" class="example-right-align">
                 <span matPrefix><i class="material-icons">lock</i></span>
             </mat-form-field>
-            <span *ngIf="customerform.controls.repassword.invalid && customerform.controls.repassword.dirty">
-                Re-Type Password is required.
+            <span *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
+                    * should be combination of all cases and numbers.
             </span><br>
             <mat-form-field>
                     <input matInput placeholder="emailid" type="text" formControlName="email" class="example-right-align">

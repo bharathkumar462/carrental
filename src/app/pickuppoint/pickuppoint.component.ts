@@ -4,27 +4,32 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarrentalserviceService } from '../carrentalservice.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BookCars } from '../bookcars';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-pickuppoint',
   templateUrl: './pickuppoint.component.html',
   styleUrls: ['./pickuppoint.component.css']
 })
 export class PickuppointComponent implements OnInit {
-  progressvalue = 25;
+  progressvalue = 0;
   lat = 43.879078;
   lng = -103.4615581;
   area: string;
-  model;
+  model;triplist:BookCars[]=[];
+  dataSource;
+  displayedColumns: string[]=['numberplate','bookeddate','bookedtime','carname','bookstatus']
+  status:boolean=false;
   fromDate: NgbDate;
   toDate: NgbDate; hoveredDate: NgbDate;
   time = { hour: 13, minute: 30 };
   meridian = true;
   customer;
   reverseValue() {
-    this.progressvalue = (this.progressvalue) - 50;
+    this.progressvalue = (this.progressvalue) - 25;
   }
   progressValue() {
-    this.progressvalue = (this.progressvalue) + 50;
+    this.progressvalue = (this.progressvalue) + 25;
   }
 
   toggleMeridian() {
@@ -35,7 +40,7 @@ export class PickuppointComponent implements OnInit {
     this.customer.image = 'data:image/jpeg;base64,' + this.customer.image;
   }
 
-  constructor(calendar: NgbCalendar, private s1: DomSanitizer, private route: Router, private modalService: NgbModal) {
+  constructor(calendar: NgbCalendar, private s1: DomSanitizer, private mytripservice:CarrentalserviceService,private route: Router, private modalService: NgbModal) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -96,6 +101,13 @@ export class PickuppointComponent implements OnInit {
 
   fetchimage(url: string) {
     return this.s1.bypassSecurityTrustUrl(url);
+  }
+  getcarno(){
+this.status=!this.status;
+this.mytripservice.mytriplist(this.customer.phonenumber).subscribe(data=>{
+  this.triplist = data;
+  this.dataSource=this.triplist;
+})
   }
 }
 
