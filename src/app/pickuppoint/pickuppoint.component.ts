@@ -16,10 +16,10 @@ export class PickuppointComponent implements OnInit {
   lat = 43.879078;
   lng = -103.4615581;
   area: string;
-  model;triplist:BookCars[]=[];
+  model; triplist: BookCars[] = [];
   dataSource;
-  displayedColumns: string[]=['numberplate','bookeddate','bookedtime','carname','bookstatus']
-  status:boolean=false;
+  displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'carname', 'bookstatus']
+  status: boolean = false;
   fromDate: NgbDate;
   toDate: NgbDate; hoveredDate: NgbDate;
   time = { hour: 13, minute: 30 };
@@ -40,7 +40,7 @@ export class PickuppointComponent implements OnInit {
     this.customer.image = 'data:image/jpeg;base64,' + this.customer.image;
   }
 
-  constructor(calendar: NgbCalendar, private s1: DomSanitizer, private mytripservice:CarrentalserviceService,private route: Router, private modalService: NgbModal) {
+  constructor(calendar: NgbCalendar, private s1: DomSanitizer, private mytripservice: CarrentalserviceService, private route: Router, private modalService: NgbModal) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -102,12 +102,12 @@ export class PickuppointComponent implements OnInit {
   fetchimage(url: string) {
     return this.s1.bypassSecurityTrustUrl(url);
   }
-  getcarno(){
-this.status=!this.status;
-this.mytripservice.mytriplist(this.customer.phonenumber).subscribe(data=>{
-  this.triplist = data;
-  this.dataSource=this.triplist;
-})
+  getcarno() {
+    this.status = !this.status;
+    this.mytripservice.mytriplist(this.customer.phonenumber).subscribe(data => {
+      this.triplist = data;
+      this.dataSource = this.triplist;
+    })
   }
 }
 

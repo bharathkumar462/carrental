@@ -17,8 +17,11 @@ export class AdminpageComponent implements OnInit {
   urlimage; carnoplate;
   fileimage: any = File;
   carslist: CarsList = new CarsList();
-  admin; triplist;
+  admin;
+   triplist;
   display = true;
+  dataSource;
+  displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus']
   carslistfrom = new FormGroup({
     availability: new FormControl('', Validators.required),
     carname: new FormControl('', Validators.required),
@@ -27,28 +30,31 @@ export class AdminpageComponent implements OnInit {
     phonenumber: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required)
   });
+
   image(value) {
     const file = value.target.files[0];
-
     this.fileimage = file;
-
   }
+
   fetchimage(url: string) {
     return this.s1.bypassSecurityTrustUrl(url);
   }
+
   ngOnInit() {
     this.admin = JSON.parse(sessionStorage.getItem('customer'));
     this.admin.image = 'data:image/jpeg;base64,' + this.admin.image;
     this.carslistfrom.controls['phonenumber'].setValue(this.admin.phonenumber);
     this.carslistfrom.controls['username'].setValue(this.admin.username);
   }
+
   save() {
     const data = this.carslistfrom.value;
     const formdata = new FormData();
     formdata.append("data", JSON.stringify(data));
     formdata.append('image', this.fileimage);
-    this.addcarservice.addCars(formdata).subscribe(data => console.log(data));
+    this.addcarservice.newCar(formdata).subscribe(data => console.log(data));
   }
+
   constructor(private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
 
   open(content) {

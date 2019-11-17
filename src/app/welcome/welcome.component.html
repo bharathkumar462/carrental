@@ -27,12 +27,12 @@
         </nav>
 </header>
 <section class="web_homePage" (scroll)="onWindowScroll($event);">
-        <div id="firstimage">
+         <div id="firstimage" style="background-image: url('assets/images/welcomeimage.jpg');">
                 <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
                 <p class="display-3"> JUST RENT CARS!!!</p>
                 <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start
                                 Your Journey</button></a>
-        </div>
+        </div> 
         <router-outlet></router-outlet>
         <div class="container">
                 <h2 style="font-weight: bold;text-align:center">THE CARRENTAL ADVANTAGE</h2>
