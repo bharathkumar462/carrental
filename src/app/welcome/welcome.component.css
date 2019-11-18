@@ -1,12 +1,23 @@
+/* background image */
+
 #firstimage{
-    /* background-image: url("D:\students_nsfb18\car rental system\carrentalfront\src\assets\images\welcomeimage.jpg"); */
-    height:400px;
+	margin-top: 5px;
+    height:600px;
     background-size:100% 100%;
     background-repeat: no-repeat;
 }
-.display-3{
-    color: azure;
+.row a{
+display: flex;
+justify-content: center;
 }
+.display-3{
+	text-align: center;
+	text-shadow: rgb(15, 15, 15) 10px 0 10px;
+    color: whitesmoke;
+}
+
+/* promo cards */
+
 .card-text{
     color:black;
 }
@@ -25,7 +36,6 @@
 .card{
     box-shadow: 0 0 5px rgba(20, 20, 20, .6);
 }
-
 .card-text {
     display: block;
     font-style: italic;
@@ -36,7 +46,8 @@
     margin-bottom:40px;
 }
 nav{
-    box-shadow: 0 0 5px rgba(13, 202, 69, 0.70);
+	background-color: lightblue; 
+    box-shadow: 0 0 5px rgba(8, 8, 8, 0.7);
 }
 #login{
     margin-right: 40px;

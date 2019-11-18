@@ -1,4 +1,4 @@
-<mat-drawer-container autosize>
+<mat-drawer-container>
     <nav class="navbar bg-dark">
         <div class="navbar-header">
             <img src="assets/images/doubleright.png" placement="bottom" ngbTooltip="info" (click)="drawer.toggle()">
@@ -60,40 +60,40 @@
     </div>
 
     <div [hidden]="!status" class="container">
-            <div class="mat-elevation-z8">
-                    <table mat-table [dataSource]="dataSource" matSort>
-                       
-                        <ng-container matColumnDef="numberplate">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> numberplate </th>
-                            <td mat-cell *matCellDef="let row"> {{row.numberplate}} </td>
-                        </ng-container>
-                
-                        <ng-container matColumnDef="bookeddate">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookeddate </th>
-                            <td mat-cell *matCellDef="let row"> {{row.bookeddate}} </td>
-                        </ng-container>
-                
-                        <ng-container matColumnDef="bookedtime">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookedtime </th>
-                            <td mat-cell *matCellDef="let row"> {{row.bookedtime}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="carname">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> carname </th>
-                            <td mat-cell *matCellDef="let row"> {{row.carname}} </td>
-                        </ng-container>
-                
-                        <ng-container matColumnDef="bookstatus">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
-                            <td mat-cell *matCellDef="let row" [style.color]="green"> {{row.bookstatus}} </td>
-                        </ng-container>
-                
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                        </tr>
-                    </table>
-                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                </div>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="numberplate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> numberplate </th>
+                    <td mat-cell *matCellDef="let row"> {{row.numberplate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bookeddate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> bookeddate </th>
+                    <td mat-cell *matCellDef="let row"> {{row.bookeddate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bookedtime">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> bookedtime </th>
+                    <td mat-cell *matCellDef="let row"> {{row.bookedtime}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="carname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> carname </th>
+                    <td mat-cell *matCellDef="let row"> {{row.carname}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="bookstatus">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
+                    <td mat-cell *matCellDef="let row" [style.color]="green"> {{row.bookstatus}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
         <button type="button" class="btn btn-outline-dark" (click)="getcarno()">BACK</button>
     </div>
 

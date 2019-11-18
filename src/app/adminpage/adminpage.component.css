@@ -1,5 +1,4 @@
 #firstimage{
-   
     height:400px;
     background-size:100% 100%;
     background-repeat: no-repeat;
@@ -15,18 +14,24 @@ img{
     height: 50px;
 }
 
+.display-3{
+    text-align: center;
+	text-shadow: rgb(15, 15, 15) 10px 0 10px;
+    color: whitesmoke;
+}
+
 
   .sebm-google-map-container {
     height: 300px;
   }
 
-  table,tr,td,th{
-      border: 2px solid black;
-  }
 
  .sidebar{
      background-color: wheat;
      color: white;
+ }
+ mat-drawer-container{
+    height:100%;
  }
  .carnoplates{
      padding: 5px;
@@ -37,3 +42,19 @@ img{
      width: 100px;
  }
 
+ table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  
+  .image-upload>input {
+    display: none;
+  }

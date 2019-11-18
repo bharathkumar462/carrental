@@ -1,14 +1,11 @@
 <header>
-        <nav class="navbar bg-dark animated fadeInDown" id="navbar">
+        <nav class="navbar bg-dark">
+        </nav>
+        <nav class="navbar  animated fadeInDown" id="navbar">
                 <div class="navbar-header">
                         <a class="navbar-brand" href="#">CARRENTAL</a>
                 </div>
-                <!-- <div class="navbar right">
-                <p>{{name}}</p>
-                <p class="navbar-brand" (click)="open()">Login</p>
-                <p class="navbar-brand" (click)="open1()">Register</p>
-        </div> -->
-                <div class="navbar right">
+                <div class="navbar right" style="padding-top: 0px;">
                         <a class="three-d" id="login" (click)="open()">
                                 Login
                                 <span aria-hidden="true" class="three-d-box">
@@ -26,14 +23,19 @@
                 </div>
         </nav>
 </header>
-<section class="web_homePage" (scroll)="onWindowScroll($event);">
-         <div id="firstimage" style="background-image: url('assets/images/welcomeimage.jpg');">
+
+<div id="firstimage" class="row" style="background-image: url('assets/images/bgimage.jpg');">
+        <div class="col-12">
                 <p class="display-3">WISE PEOPLE DON'T BUY CARS</p>
                 <p class="display-3"> JUST RENT CARS!!!</p>
-                <a><button style="margin-left:400px;height:50px;width: 500px;" routerLink="/pickuppoint" class="btn btn-warning">Start
+                <a><button routerLink="/pickuppoint" class="btn btn-lg btn-warning">Start
                                 Your Journey</button></a>
-        </div> 
-        <router-outlet></router-outlet>
+        </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<section class="web_homePage" (scroll)="onWindowScroll($event);">
         <div class="container">
                 <h2 style="font-weight: bold;text-align:center">THE CARRENTAL ADVANTAGE</h2>
                 <p style="color:black;text-align:center">We simplified car rentals, so you can focus on what's

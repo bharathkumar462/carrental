@@ -11,7 +11,7 @@ import { LoginComponent } from '../login/login.component';
 export class ForgotpasswordComponent implements OnInit {
   status: boolean = false;
   newstatus: boolean = false;
-  otp:number;
+  otp: number;
   otpstatus: boolean = false;
   customerform = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -31,8 +31,9 @@ export class ForgotpasswordComponent implements OnInit {
   }
   checkotp() {
     this.frgtservice.otpverify(this.otp).subscribe(data => {
-      this.newstatus=data;
-    if(data){this.otpstatus=false;}});
+      this.newstatus = data;
+      if (data) { this.otpstatus = false; }
+    });
   }
   onSubmit() {
     this.frgtservice.updatePassword(this.customerform.value).subscribe(data => console.log(data), error => console.log(error));

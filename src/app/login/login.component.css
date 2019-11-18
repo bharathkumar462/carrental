@@ -12,18 +12,20 @@ img{
     position: absolute;
 
 }
-
+#ForgotPassword{
+    margin-left: 10px;
+}
 img{
     width: 200px;
     height: 200px;
   }
-  .card{
+.card{
     box-shadow: 0 0 5px rgba(20, 20, 20, .6);
     background-color: white;
     width: 400px;
     height: 400px;
     border: 0;
-  }
+}
 .promocards{
   display: block;
   float: left;

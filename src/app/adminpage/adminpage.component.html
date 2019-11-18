@@ -1,79 +1,26 @@
-<mat-drawer-container autosize>
-        <nav class="navbar bg-dark">
+<mat-drawer-container>
+        <div [hidden]="status">
+                <nav class="navbar bg-dark">
 
-                <div class="navbar-header">
-                        <img src="assets/images/doubleright.png" placement="bottom" ngbTooltip="info"
-                                (click)="drawer.toggle()">
+                        <div class="navbar-header">
+                                <img src="assets/images/doubleright.png" placement="bottom" ngbTooltip="info" (click)="drawer.toggle()">
+                        </div>
+                        <div>
+                                <a class="navbar-brand" placement="bottom" ngbTooltip="HOME" href="#">CARRENTAL</a>
+                        </div>
+                        <div class="navbar right">
+                                <div><a><img src="assets/images/logout.png" placement="bottom" ngbTooltip="LOGOUT"
+                                                        routerLink="/welcome"></a></div>
+                        </div>
+                </nav>
+                <div id="firstimage" style="background-image: url('assets/images/welcomeimage.jpg')">
+                        <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
+                        <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
+                        <button style="margin-left:400px;height:50px;width: 500px;" (click)="open(content)" class="btn btn-warning">
+                                Add Cars</button>
                 </div>
-                <div>
-                        <a class="navbar-brand" placement="bottom" ngbTooltip="HOME" href="#">CARRENTAL</a>
-                </div>
-                <div class="navbar right">
-                        <div><a><img src="assets/images/logout.png" placement="bottom" ngbTooltip="LOGOUT"
-                                                routerLink="/welcome"></a></div>
-                </div>
-        </nav>
-        <div id="firstimage" style="background-image: url('assets/images/welcomeimage.jpg')">
-                <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
-                <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
-                <button style="margin-left:400px;height:50px;width: 500px;" (click)="open(content)"
-                        class="btn btn-warning">
-                        Add Cars</button>
         </div>
-
-        <ng-template #content let-modal>
-                <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Add Cars</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                        <form [formGroup]="carslistfrom" (ngSubmit)="save()" class="was-validated">
-                                <label>Phonenumber:</label>
-                                <input class="form-control form-control-lg" type="number" formControlName="phonenumber"
-                                        disabled>
-                                <label>Name:</label>
-                                <input class="form-control form-control-lg" type="text" formControlName="username"
-                                        disabled>
-                                <label>NumberPlate:</label>
-                                <input class="form-control form-control-lg" type="text" formControlName="numberplate">
-                                <!-- <span *ngIf="carslistfrom.controls.numberplate.invalid">
-                                        numberplate is required.
-                                </span><br> -->
-                                <label>availability:</label>
-                                <input class="form-control form-control-lg" type="text" formControlName="availability"
-                                        required>
-                                <span
-                                        *ngIf="carslistfrom.controls.availability.invalid && carslistfrom.controls.availability.dirty">
-                                        availability is required.
-                                </span>
-                                <br>
-                                <label>carname:</label>
-                                <input class="form-control form-control-lg" type="text" formControlName="carname">
-                                <span *ngIf="carslistfrom.controls.carname.invalid">
-                                        carname is required.
-                                </span><br> <br>
-                                <label>price:</label>
-                                <input class="form-control form-control-lg" type="number" formControlName="price">
-                                <span *ngIf="carslistfrom.controls.price.invalid">
-                                        price is required.
-                                </span><br>
-                                <input type="file" (change)="image($event)" accept="image/*"><br>
-                                <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
-                        </form>
-                </div>
-        </ng-template>
-        <mat-drawer #drawer class="sidebar" mode="side">
-                <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)"><br>
-                <hr>
-                <button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button>
-                <div class="carnoplates" style="display:block;" *ngFor="let c of carnoplate">
-                        <button type="button" class="btn btn-outline-dark" value="c.numberplate"
-                                (click)="gettriplist(c)">{{c.numberplate}}</button>
-                </div>
-        </mat-drawer>
-        <div [hidden]="display" class="container">
+        <div [hidden]="!status" class="container">
                 <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSource" matSort>
 
@@ -109,7 +56,57 @@
                         </table>
                         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                 </div>
-                <button type="button" class="btn btn-outline-dark" (click)="getcarno()">BACK</button>
+                <button type="button" class="btn btn-outline-dark" (click)="homepage()">BACK</button>
         </div>
-
+        <mat-drawer #drawer class="sidebar" mode="side">
+                <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)"><br>
+                <hr>
+                <button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button>
+                <div class="carnoplates" style="display:block;" *ngFor="let c of carnoplate">
+                        <button type="button" class="btn btn-outline-dark" value="c.numberplate" (click)="gettriplist(c)">{{c.numberplate}}</button>
+                </div>
+        </mat-drawer>
 </mat-drawer-container>
+
+<ng-template #content let-modal>
+        <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Add Cars</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+                <form [formGroup]="carslistfrom" (ngSubmit)="save()" class="was-validated">
+                        <label>Phonenumber:</label>
+                        <input class="form-control form-control-lg" type="number" formControlName="phonenumber"
+                                disabled>
+                        <label>Name:</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="username" disabled>
+                        <label>NumberPlate:</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="numberplate" required>
+                        <label>availability:</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="availability" required>
+                        <span *ngIf="carslistfrom.controls.availability.invalid && carslistfrom.controls.availability.dirty">
+                                availability is required.
+                        </span>
+                        <br>
+                        <label>carname:</label>
+                        <input class="form-control form-control-lg" type="text" formControlName="carname" required>
+                        <span *ngIf="carslistfrom.controls.carname.invalid">
+                                carname is required.
+                        </span><br> <br>
+                        <label>price:</label>
+                        <input class="form-control form-control-lg" type="number" formControlName="price" required>
+                        <span *ngIf="carslistfrom.controls.price.invalid">
+                                price is required.
+                        </span><br>
+                        <div class="image-upload">
+                                <label for="file-input">
+                                        <img style="height: 20px;width: 20px;" src="assets/images/camera.png" />
+                                </label>
+                                <input id="file-input" type="file" (change)="image($event)" accept="image/*" />{{fileimage.name}}
+                        </div>
+                        <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
+                </form>
+        </div>
+</ng-template>

@@ -40,32 +40,26 @@
         </ngb-carousel>
     </div>
     <div class="regform">
-        <form [formGroup]="customerform" (ngSubmit)="check()">
-            <!-- <label>First Name:</label>
-        <div class="usericon"><img src="assets/images/users.png">
-        <input  class="form-control form-control-lg" type="text" formControlName="username" >
-        <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
-            firstName is required.
-        </span> </div><br> -->
-            <mat-form-field>
-                <input matInput placeholder="Phone Number" type="number" formControlName="phonenumber" class="example-right-align">
+        <form [formGroup]="customerform" autocomplete="off" (ngSubmit)="check()">
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" type="number" formControlName="phonenumber" class="example-right-align"
+                    required>
                 <span matPrefix><i class="material-icons">phone</i></span>
+                <mat-error *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.touched">*
+                    is required</mat-error>
             </mat-form-field>
-            <span *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.dirty">
-                phoneNumber is required.
-            </span><br> <br>
-            <mat-form-field>
-                <input matInput placeholder="Password" type="password" formControlName="password" class="example-right-align">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" type="password" formControlName="password" class="example-right-align"
+                    required>
                 <span matPrefix><i class="material-icons">lock</i></span>
+                <mat-error *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">*
+                    is required</mat-error>
             </mat-form-field>
-            <span *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">
-                Password is required.
-            </span>
-            <br> <br>
-            <button type="submit" mat-raised-button>Submit</button>
-            <button type="button" mat-raised-button color="warn" (click)="open()">ForgotPassword</button>
+            <p style="color:red">{{authenticatemsg}}</p>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="button" id="ForgotPassword" mat-raised-button color="warn" (click)="open()">ForgotPassword</button>
         </form>
     </div>
-
-    
 </div>

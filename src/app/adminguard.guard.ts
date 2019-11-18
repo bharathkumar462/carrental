@@ -8,13 +8,13 @@ import { CarrentalserviceService } from './carrentalservice.service';
 export class AdminguardGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private authService: CarrentalserviceService, private router: Router) {
   }
-  
+
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-  if (this.authService.isAdmin()) {
-  return true;
-  }
-  this.router.navigate(['/welcome']);
-  return false;
+    if (this.authService.isAdmin()) {
+      return true;
+    }
+    this.router.navigate(['/welcome']);
+    return false;
   }
   canActivateChild(
     next: ActivatedRouteSnapshot,

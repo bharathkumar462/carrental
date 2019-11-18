@@ -18,9 +18,10 @@ export class AdminpageComponent implements OnInit {
   fileimage: any = File;
   carslist: CarsList = new CarsList();
   admin;
-   triplist;
+  triplist;
   display = true;
   dataSource;
+  status = false;
   displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus']
   carslistfrom = new FormGroup({
     availability: new FormControl('', Validators.required),
@@ -62,7 +63,7 @@ export class AdminpageComponent implements OnInit {
   }
 
   getcarno() {
-    console.log(this.admin.phonenumber);
+    this.status = true;
     this.addcarservice.bookedcars(this.admin.phonenumber).subscribe(data => {
       this.carnoplate = data;
       console.log(data);
@@ -74,7 +75,12 @@ export class AdminpageComponent implements OnInit {
     this.display = false;
     this.addcarservice.gettriplist(data.numberplate).subscribe(data => {
       this.triplist = data;
+      this.dataSource = data;
     })
+  }
+
+  homepage() {
+    this.status = !this.status;
   }
 
 }

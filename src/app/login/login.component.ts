@@ -7,6 +7,7 @@ import { CarrentalserviceService } from '../carrentalservice.service';
 import { Router } from '@angular/router';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { AdminpageComponent } from '../adminpage/adminpage.component';
+import { error } from 'util';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,24 +16,26 @@ import { AdminpageComponent } from '../adminpage/adminpage.component';
 export class LoginComponent implements OnInit {
   status: boolean = false;
   customer: any;
-
+  authenticatemsg: string;
   customerform = new FormGroup({
-    phonenumber: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+    phonenumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    password: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")])
 
   });
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
     private lgnservice: CarrentalserviceService, private route: Router, private naming: AdminpageComponent) { }
-  open() {  
+
+  ngOnInit() { }
+
+  open() {
     this.modalService.open(ForgotpasswordComponent);
     this.activeModal.close();
   }
-  ngOnInit() { }
+
 
   check() {
     this.lgnservice.checkCustomer(this.customerform.value).subscribe(data => {
-      console.log(data);
       if (data != null) {
         this.customer = data;
         console.log(this.customer);
@@ -45,6 +48,11 @@ export class LoginComponent implements OnInit {
           this.activeModal.close();
           this.route.navigate(['pickuppoint']);
         }
+      }
+    }, error => {
+      if (error.status === 404) {
+        this.authenticatemsg = error.error;
+        console.log(error);
       }
     });
   }

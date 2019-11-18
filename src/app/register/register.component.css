@@ -61,3 +61,6 @@ background-color: rgb(248, 239, 239);
  span{
      color: red;
  }
+ .image-upload>input {
+    display: none;
+  }

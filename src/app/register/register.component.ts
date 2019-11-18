@@ -11,30 +11,35 @@ import { LoginComponent } from '../login/login.component';
 })
 export class RegisterComponent implements OnInit {
   customerform = new FormGroup({
-    username: new FormControl('',Validators.required),
-    phonenumber: new FormControl('',[Validators.required,Validators.minLength(10)]),
-    password: new FormControl('',[Validators.required,Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")]),
-    repassword: new FormControl('',[Validators.required,Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")]),
-    email: new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z.-]+.[a-z]{2,4}$")]),
-    admin: new FormControl('',Validators.required)
+    username: new FormControl('', Validators.required),
+    phonenumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    password: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")]),
+    repassword: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")]),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z.-]+.[a-z]{2,4}$")]),
+    admin: new FormControl('', Validators.required)
   });
   fileimage: any = File;
   role;
-  constructor(public activeModal: NgbActiveModal,private regservice:CarrentalserviceService,private modalService: NgbModal,private router:Router) { }
+  photo: string;
+  hide = true;
 
-  ngOnInit() {
+  constructor(public activeModal: NgbActiveModal, private regservice: CarrentalserviceService, private modalService: NgbModal, private router: Router) { }
+
+  ngOnInit() { }
+
+  save() {
+    const data = this.customerform.value;
+    const formdata = new FormData();
+    formdata.append("data", JSON.stringify(data));
+    formdata.append('image', this.fileimage);
+    this.regservice.createCustomer(formdata).subscribe(data => console.log(data), error => console.log(error));
+    this.activeModal.close();
+    this.modalService.open(LoginComponent);
   }
-save(){
-  const data = this.customerform.value;
-  const formdata = new FormData();
-  formdata.append("data", JSON.stringify(data));
-  formdata.append('image', this.fileimage);
-this.regservice.createCustomer(formdata).subscribe(data => console.log(data), error => console.log(error));
-this.activeModal.close();
-this.modalService.open(LoginComponent);
-}
-image(value) {
-  const file = value.target.files[0];
-  this.fileimage = file;
-}
+
+  image(value) {
+    const file = value.target.files[0];
+    this.fileimage = file;
+    this.photo = this.fileimage.name;
+  }
 }

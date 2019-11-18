@@ -13,14 +13,14 @@ import { AdminguardGuard } from './adminguard.guard';
 
 
 const routes: Routes = [
-  {path:'', redirectTo:'welcome', pathMatch:'full' },
-  {path:'welcome', component:WelcomeComponent},
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent},
-  { path: 'pickuppoint', component: PickuppointComponent,canActivate:[AuthenticateGuard]},
-  { path: 'admin', component: AdminpageComponent,canActivate:[AdminguardGuard]},
-  { path: 'bookcars', component: BookcarsComponent,canActivate:[AuthenticateGuard]},
-  { path: 'b', component:BookedcarsComponent}
+  { path: 'register', component: RegisterComponent },
+  { path: 'pickuppoint', component: PickuppointComponent, canActivate: [AuthenticateGuard] },
+  { path: 'admin', component: AdminpageComponent, canActivate: [AdminguardGuard] },
+  { path: 'bookcars', component: BookcarsComponent, canActivate: [AuthenticateGuard] },
+  { path: 'b', component: BookedcarsComponent }
 ];
 
 @NgModule({

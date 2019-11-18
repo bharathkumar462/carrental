@@ -40,58 +40,69 @@
         </ngb-carousel>
     </div>
     <div class="regform">
-        <form [formGroup]="customerform" (ngSubmit)="save()" class="was-validated">
+        <form [formGroup]="customerform" autocomplete="off" (ngSubmit)="save()" class="was-validated">
             <div class="radio-toolbar">
                 <input type="radio" id="Customer" formControlName="admin" value="false">
                 <label style="width:200px;" for="Customer">Customer</label>
                 <input type="radio" id="admin" formControlName="admin" value="true">
                 <label style="width:200px;" for="admin">admin</label>
             </div>
-            <mat-form-field>
-                <input matInput placeholder="First Name" type="text" formControlName="username" required
-                    class="example-right-align">
-                <span matPrefix><i class="material-icons">account_circle</i></span>
-            </mat-form-field>
-            <span *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
-                firstName is required.
-            </span>
-            <br>
-            <mat-form-field>
-                <input matInput placeholder="Phone Number" type="text" formControlName="phonenumber" required
-                    class="example-right-align">
-                <span matPrefix><i class="material-icons">phone</i></span>
-            </mat-form-field>
 
-            <span *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.dirty">
-                phoneNumber is required.
-            </span><br>
             <mat-form-field>
-                <input matInput placeholder="Password" type="text" formControlName="password"
+                <input matInput placeholder="First Name" type="text" formControlName="username" required class="example-right-align">
+                <span matPrefix><i class="material-icons">account_circle</i></span>
+                <mat-error *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
+                    * is required.
+                </mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field>
+                <input matInput placeholder="Phone Number" type="text" formControlName="phonenumber" required class="example-right-align">
+                <span matPrefix><i class="material-icons">phone</i></span>
+                <mat-error *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.dirty">
+                    * is required.
+                </mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field>
+                <input matInput placeholder="Password" [type]="hide ?'password':'text'" formControlName="password"
                     class="example-right-align">
                 <span matPrefix><i class="material-icons">lock</i></span>
-            </mat-form-field>
-            <span *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">
-                * should be combination of all cases and numbers.
-            </span><br>
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">
+                    * should be combination of all cases and numbers.
+                </mat-error>
+            </mat-form-field><br>
+
             <mat-form-field>
-                <input matInput placeholder="Re-Type Password" type="password" formControlName="repassword"
+                <input matInput placeholder="Re-Type Password" [type]="hide ?'password':'text'" formControlName="repassword"
                     class="example-right-align">
                 <span matPrefix><i class="material-icons">lock</i></span>
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
+                    * should be combination of all cases and numbers.
+                </mat-error>
             </mat-form-field>
-            <span *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
-                * should be combination of all cases and numbers.
-            </span><br>
+            <br>
             <mat-form-field>
                 <input matInput placeholder="emailid" type="text" formControlName="email" class="example-right-align">
                 <span matPrefix><i class="material-icons">mail</i></span>
+                <mat-error *ngIf="customerform.controls.email.invalid && customerform.controls.email.dirty">
+                    * is required.
+                </mat-error>
             </mat-form-field>
-            <span *ngIf="customerform.controls.email.invalid && customerform.controls.email.dirty">
-                email is required.
-            </span><br>
-            <label>Your Photo:</label>
-            <input type="file" (change)="image($event)" accept="image/*"><br>
-            <button type="submit" class="btn btn-outline-success btn-block"
-                [disabled]="!customerform.valid">Submit</button>
+            <br>
+            <div class="image-upload">
+                <label for="file-input">
+                    <img style="height: 20px;width: 20px;" src="assets/images/camera.png" />
+                </label>
+                <input id="file-input" type="file" (change)="image($event)" accept="image/*" />{{photo}}
+            </div>
+            <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!customerform.valid">Submit</button>
         </form>
 
     </div>
