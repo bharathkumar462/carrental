@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   customer: any;
   authenticatemsg: string;
   customerform = new FormGroup({
-    phonenumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    password: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9_-]{6,12}$")])
+    phonenumber: new FormControl('', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]),
+    password: new FormControl('', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{6,12}$')])
 
   });
 

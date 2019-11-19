@@ -6,6 +6,7 @@ import { CarrentalserviceService } from '../carrentalservice.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookCars } from '../bookcars';
 import { MatTableDataSource } from '@angular/material/table';
+import { LogoutComponent } from '../logout/logout.component';
 @Component({
   selector: 'app-pickuppoint',
   templateUrl: './pickuppoint.component.html',
@@ -108,6 +109,10 @@ export class PickuppointComponent implements OnInit {
       this.triplist = data;
       this.dataSource = this.triplist;
     })
+  }
+
+  logout(){
+    this.modalService.open(LogoutComponent);
   }
 }
 

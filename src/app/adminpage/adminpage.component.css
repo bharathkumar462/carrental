@@ -58,3 +58,14 @@ img{
   .image-upload>input {
     display: none;
   }
+
+  .display-3{
+	text-align: center;
+	text-shadow: rgb(15, 15, 15) 10px 0 10px;
+    color: whitesmoke;
+}
+
+td button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

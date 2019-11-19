@@ -25,7 +25,7 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private modalService: NgbModal, @Inject(DOCUMENT) document) { }
 
-  ngOnInit() { sessionStorage.clear(); }
+  ngOnInit() {  }
 
   @HostListener('window:scroll', ['$event'])
 

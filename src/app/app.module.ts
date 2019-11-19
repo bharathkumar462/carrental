@@ -127,6 +127,7 @@ import { LogoutComponent } from './logout/logout.component';
   ],
   providers: [RegisterComponent, AdminpageComponent, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent],
-  entryComponents: [ForgotpasswordComponent]
+  entryComponents: [ForgotpasswordComponent,LogoutComponent]
 })
 export class AppModule { }
+ 

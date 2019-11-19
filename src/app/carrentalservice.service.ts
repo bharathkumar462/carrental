@@ -49,9 +49,13 @@ export class CarrentalserviceService {
     return this.http.get(`${this.baseUrl}customers/otpverify/${otp}`);
   }
   mytriplist(data: any): Observable<any> {
-
     return this.http.post(this.baseUrl + "customers/triplists", data);
   }
+
+  closetrip(data:any,numberplate:any):Observable<any>{
+    return this.http.put(this.baseUrl+`cars/${numberplate}`,data);
+  }
+
   isAuthenticated(): boolean {
     return sessionStorage.getItem('customer') !== null;
   }

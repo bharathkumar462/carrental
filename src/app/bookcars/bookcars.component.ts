@@ -3,7 +3,6 @@ import { CarrentalserviceService } from '../carrentalservice.service';
 import { CarsList } from '../carslist';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BookCars } from '../bookcars';
-import { CustomerDetails } from '../customerdetails';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,6 +28,7 @@ export class BookcarsComponent implements OnInit {
   fetchimage(url: string) {
     return this.s1.bypassSecurityTrustUrl(url);
   }
+
   save(carsinfo: any) {
     console.log(carsinfo);
     let bookcars: BookCars = new BookCars();
@@ -44,10 +44,7 @@ export class BookcarsComponent implements OnInit {
     bookcars.bookedtime = bookinfo.bookedtime;
     bookcars.bookeddate = bookinfo.pickupdate;
     carsinfo.image = splitimage[1];
-    console.log(carsinfo);
-    console.log(bookcars);
-    this.getcarservice.updatestatus(carsinfo).subscribe(data => console.log(data));
-    this.getcarservice.bookcars(bookcars).subscribe(data => console.log(data));
-    this.router.navigate['welcome'];
+    this.getcarservice.updatestatus(carsinfo).subscribe(data => {this.router.navigate(['pickuppoint']);});
+    this.getcarservice.bookcars(bookcars).subscribe(data =>{});
   }
 }

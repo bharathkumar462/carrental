@@ -12,6 +12,7 @@ export class ForgotpasswordComponent implements OnInit {
   status: boolean = false;
   newstatus: boolean = false;
   otp: number;
+  authenticatemsg: string;
   otpstatus: boolean = false;
   customerform = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -27,6 +28,10 @@ export class ForgotpasswordComponent implements OnInit {
     this.frgtservice.forgotPassword(this.customerform.value).subscribe(data => {
       this.otpstatus = data;
       this.status = data;
+    }, error => {
+      if (error.status === 404) {
+        this.authenticatemsg = error.error;
+      }
     });
   }
   checkotp() {

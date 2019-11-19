@@ -1,1 +1,15 @@
-<p>logout works!</p>
+<div class="logout">
+    <div class="modal-header">
+        <h4 class="modal-title">LogOut</h4>
+    </div>
+    <div class="modal-body">
+        <div class="container">
+            <p>LOGOUT SUCCESSFUL</p>
+            <img class="text-center" src="assets/images/sad.png" placement="bottom" ngbTooltip="LOGOUT">
+            <P>VISIT US AGAIN!!</P>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-lg btn-warn" (click)="activeModal.dismiss()" routerLink="/welcome">OK</button>
+    </div>
+</div>

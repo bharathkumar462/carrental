@@ -43,12 +43,12 @@
         <form [formGroup]="customerform" autocomplete="off" (ngSubmit)="check()">
             <mat-form-field appearance="outline">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" type="number" formControlName="phonenumber" class="example-right-align"
-                    required>
+                <input matInput placeholder="Phone Number" type="text" formControlName="phonenumber" required class="example-right-align">
                 <span matPrefix><i class="material-icons">phone</i></span>
-                <mat-error *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.touched">*
-                    is required</mat-error>
-            </mat-form-field>
+                <mat-error *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.dirty">
+                    * is required.
+                </mat-error>
+            </mat-form-field><br>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput placeholder="Password" type="password" formControlName="password" class="example-right-align"

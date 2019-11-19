@@ -3,11 +3,11 @@
         <div class="navbar-header">
             <img src="assets/images/doubleright.png" placement="bottom" ngbTooltip="info" (click)="drawer.toggle()">
         </div>
-        <div>
-            <a class="navbar-brand" placement="bottom" ngbTooltip="CARRENTAL" href="#">CARRENTAL</a>
+        <div class="navbar-brand">
+            <img src="assets/images/home.png" placement="bottom" ngbTooltip="HOME" routerLink="/welcome">
         </div>
         <div class="navbar right">
-            <img src="assets/images/home.png" placement="bottom" ngbTooltip="HOME" routerLink="/welcome">
+            <img src="assets/images/logout.png" placement="bottom" ngbTooltip="LOGOUT" (click)="logout()">
         </div>
     </nav>
     <div [hidden]="status" class="container">
@@ -85,7 +85,12 @@
 
                 <ng-container matColumnDef="bookstatus">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
-                    <td mat-cell *matCellDef="let row" [style.color]="green"> {{row.bookstatus}} </td>
+                    <td mat-cell *matCellDef="let row">
+                        <button type="button" class="btn btn-sm btn-primary" *ngIf="row.bookstatus">
+                            NOW BOOKED
+                        </button>
+                        <button type="button" class="btn btn-sm btn-primary" disabled *ngIf="!row.bookstatus">OLD</button>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

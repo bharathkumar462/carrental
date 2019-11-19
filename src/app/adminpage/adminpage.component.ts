@@ -7,6 +7,8 @@ import { CarrentalserviceService } from '../carrentalservice.service';
 import { CarsList } from '../carslist';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutComponent } from '../logout/logout.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-adminpage',
@@ -14,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./adminpage.component.css']
 })
 export class AdminpageComponent implements OnInit {
+
   urlimage; carnoplate;
   fileimage: any = File;
   carslist: CarsList = new CarsList();
@@ -48,15 +51,27 @@ export class AdminpageComponent implements OnInit {
     this.carslistfrom.controls['username'].setValue(this.admin.username);
   }
 
-  save() {
+  save(content) {
+
     const data = this.carslistfrom.value;
     const formdata = new FormData();
     formdata.append("data", JSON.stringify(data));
     formdata.append('image', this.fileimage);
-    this.addcarservice.newCar(formdata).subscribe(data => console.log(data));
+    this.addcarservice.newCar(formdata).subscribe(data => {
+      this.modalService.dismissAll(content);
+      this.caradded();
+    }, error => {
+      console.log(error);
+      if (error.status === 400) { }
+    });
+
   }
 
-  constructor(private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
+  constructor(private cars: MatSnackBar, private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
+
+  caradded() {
+    this.cars.open("cars added", "enjoy", { duration: 2 * 1000 });
+  }
 
   open(content) {
     this.modalService.open(content, { size: 'lg', scrollable: true });
@@ -81,6 +96,19 @@ export class AdminpageComponent implements OnInit {
 
   homepage() {
     this.status = !this.status;
+  }
+  logout() {
+    this.modalService.open(LogoutComponent);
+  }
+
+  tripclose(bookedcar: any) {
+    bookedcar.status = false;
+    this.addcarservice.closetrip(bookedcar, bookedcar.numberplate).subscribe(data => {
+      this.addcarservice.gettriplist(bookedcar.numberplate).subscribe(data => {
+        this.triplist = data;
+        this.dataSource = data;
+      })
+    });
   }
 
 }

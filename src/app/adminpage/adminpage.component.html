@@ -6,17 +6,16 @@
                                 <img src="assets/images/doubleright.png" placement="bottom" ngbTooltip="info" (click)="drawer.toggle()">
                         </div>
                         <div>
-                                <a class="navbar-brand" placement="bottom" ngbTooltip="HOME" href="#">CARRENTAL</a>
+                                <a class="navbar-brand" placement="bottom" ngbTooltip="HOME" routerLink="/welcome">CARRENTAL</a>
                         </div>
                         <div class="navbar right">
-                                <div><a><img src="assets/images/logout.png" placement="bottom" ngbTooltip="LOGOUT"
-                                                        routerLink="/welcome"></a></div>
+                                <img src="assets/images/logout.png" placement="bottom" ngbTooltip="LOGOUT" (click)="logout()">
                         </div>
                 </nav>
                 <div id="firstimage" style="background-image: url('assets/images/welcomeimage.jpg')">
                         <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
                         <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
-                        <button style="margin-left:400px;height:50px;width: 500px;" (click)="open(content)" class="btn btn-warning">
+                        <button style="margin-left:400px;height:50px;width: 500px;" (click)="open(content)" class="btn btn-lg btn-warning">
                                 Add Cars</button>
                 </div>
         </div>
@@ -46,7 +45,10 @@
 
                                 <ng-container matColumnDef="bookstatus">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
-                                        <td mat-cell *matCellDef="let row" [style.color]="green"> {{row.bookstatus}}
+                                        <td mat-cell *matCellDef="let row">
+                                                <button type="button" class="btn btn-sm btn-primary" *ngIf="row.bookstatus"  (click)="tripclose(row)">TRIP
+                                                        CLOSE</button>
+                                                <button type="button" class="btn btn-sm btn-primary" disabled *ngIf="!row.bookstatus" >CLOSED</button>
                                         </td>
                                 </ng-container>
 
@@ -76,7 +78,7 @@
                 </button>
         </div>
         <div class="modal-body">
-                <form [formGroup]="carslistfrom" (ngSubmit)="save()" class="was-validated">
+                <form [formGroup]="carslistfrom" class="was-validated">
                         <label>Phonenumber:</label>
                         <input class="form-control form-control-lg" type="number" formControlName="phonenumber"
                                 disabled>
@@ -106,7 +108,7 @@
                                 </label>
                                 <input id="file-input" type="file" (change)="image($event)" accept="image/*" />{{fileimage.name}}
                         </div>
-                        <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
+                        <button type="submit" class="btn btn-outline-success btn-block" (click)="save(content)">Submit</button>
                 </form>
         </div>
 </ng-template>
