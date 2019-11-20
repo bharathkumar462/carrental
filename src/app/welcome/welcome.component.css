@@ -49,6 +49,10 @@ nav{
 	background-color: grey; 
     box-shadow: 0 0 5px rgba(8, 8, 8, 0.7);
 }
+nav a{
+	color:whitesmoke;
+	font-weight: bold;
+}
 #login{
     margin-right: 40px;
 }
@@ -115,8 +119,9 @@ img{
     width: 95px;
     height: 95px;
 }
+
 .sticky {
-    background: white;
+	background-color: grey; 
     box-shadow: 0 3px 12px 0 rgba(0,0,0,.08);
 	position: fixed;
 	z-index:1;

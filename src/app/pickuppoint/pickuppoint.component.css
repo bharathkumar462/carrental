@@ -43,3 +43,12 @@ height: 50px;
   mat-drawer-container{
     height:100%;
  }
+
+ #customerphoto{
+  border-radius: 50%;
+   height: 100px;
+   width: 100px;
+}
+.sidebar{
+  background-color: wheat;
+}

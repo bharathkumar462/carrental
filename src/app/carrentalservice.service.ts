@@ -46,7 +46,7 @@ export class CarrentalserviceService {
     return this.http.post(this.baseUrl + "admin/triplists", data);
   }
   otpverify(otp: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}customers/otpverify/${otp}`);
+    return this.http.get(`${this.baseUrl}customers/${otp}`);
   }
   mytriplist(data: any): Observable<any> {
     return this.http.post(this.baseUrl + "customers/triplists", data);

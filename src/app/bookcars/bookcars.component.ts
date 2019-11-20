@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrentalserviceService } from '../carrentalservice.service';
-import { CarsList } from '../carslist';
+
 import { DomSanitizer } from '@angular/platform-browser';
-import { BookCars } from '../bookcars';
+
 import { Router } from '@angular/router';
+import { CarsList } from '../model/carslist';
+import { BookCars } from '../model/bookcars';
 
 @Component({
   selector: 'app-bookcars',

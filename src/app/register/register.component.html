@@ -102,8 +102,8 @@
                 </label>
                 <input id="file-input" type="file" (change)="image($event)" accept="image/*" />{{photo}}
             </div>
+            <p id="error">{{errormsg}}</p>
             <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!customerform.valid">Submit</button>
         </form>
-
     </div>
 </div>

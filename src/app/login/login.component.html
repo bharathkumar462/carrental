@@ -58,7 +58,7 @@
                     is required</mat-error>
             </mat-form-field>
             <p style="color:red">{{authenticatemsg}}</p>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" [disabled]="!customerform.valid">Submit</button>
             <button type="button" id="ForgotPassword" mat-raised-button color="warn" (click)="open()">ForgotPassword</button>
         </form>
     </div>

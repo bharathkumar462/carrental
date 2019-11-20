@@ -4,9 +4,9 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarrentalserviceService } from '../carrentalservice.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BookCars } from '../bookcars';
 import { MatTableDataSource } from '@angular/material/table';
 import { LogoutComponent } from '../logout/logout.component';
+import { BookCars } from '../model/bookcars';
 @Component({
   selector: 'app-pickuppoint',
   templateUrl: './pickuppoint.component.html',

@@ -108,6 +108,7 @@
                                 </label>
                                 <input id="file-input" type="file" (change)="image($event)" accept="image/*" />{{fileimage.name}}
                         </div>
+                        <p id="error">{{errormsg}}</p>
                         <button type="submit" class="btn btn-outline-success btn-block" (click)="save(content)">Submit</button>
                 </form>
         </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarrentalserviceService } from '../carrentalservice.service';
-import { LoginComponent } from '../login/login.component';
+
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
@@ -21,9 +21,11 @@ export class ForgotpasswordComponent implements OnInit {
     repassword: new FormControl('', Validators.required),
     admin: new FormControl('', Validators.required)
   });
+  
   constructor(private activeModal: NgbActiveModal, private modalService: NgbModal, private frgtservice: CarrentalserviceService) { }
 
   ngOnInit() { }
+
   check() {
     this.frgtservice.forgotPassword(this.customerform.value).subscribe(data => {
       this.otpstatus = data;

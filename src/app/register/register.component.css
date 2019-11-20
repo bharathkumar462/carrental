@@ -62,3 +62,7 @@ background-color: rgb(248, 239, 239);
  .image-upload>input {
     display: none;
   }
+  
+  #error{
+    color: red;
+}

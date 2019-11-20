@@ -7,8 +7,8 @@ import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { BookcarsComponent } from './bookcars/bookcars.component';
 import { BookedcarsComponent } from './bookedcars/bookedcars.component';
-import { AuthenticateGuard } from './authenticate.guard';
-import { AdminguardGuard } from './adminguard.guard';
+import { AuthenticateGuard } from './authguard/authenticate.guard';
+import { AdminguardGuard } from './authguard/adminguard.guard';
 
 
 
@@ -19,8 +19,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'pickuppoint', component: PickuppointComponent, canActivate: [AuthenticateGuard] },
   { path: 'admin', component: AdminpageComponent, canActivate: [AdminguardGuard] },
-  { path: 'bookcars', component: BookcarsComponent, canActivate: [AuthenticateGuard] },
-  { path: 'b', component: BookedcarsComponent }
+  { path: 'bookcars', component: BookcarsComponent, canActivate: [AuthenticateGuard] }
 ];
 
 @NgModule({

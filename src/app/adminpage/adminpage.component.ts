@@ -1,14 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { MapsAPILoader, MouseEvent } from '@agm/core';
-import { AgmMap } from '@agm/core';
-import { GoogleMapsAPIWrapper } from '@agm/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CarrentalserviceService } from '../carrentalservice.service';
-import { CarsList } from '../carslist';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutComponent } from '../logout/logout.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CarsList } from '../model/carslist';
 
 @Component({
   selector: 'app-adminpage',
@@ -17,7 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AdminpageComponent implements OnInit {
 
-  urlimage; carnoplate;
+  urlimage;
+  carnoplate;
   fileimage: any = File;
   carslist: CarsList = new CarsList();
   admin;
@@ -25,7 +23,10 @@ export class AdminpageComponent implements OnInit {
   display = true;
   dataSource;
   status = false;
+  errormsg:string;
   displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus']
+
+  // formgroup 
   carslistfrom = new FormGroup({
     availability: new FormControl('', Validators.required),
     carname: new FormControl('', Validators.required),
@@ -35,15 +36,6 @@ export class AdminpageComponent implements OnInit {
     username: new FormControl('', Validators.required)
   });
 
-  image(value) {
-    const file = value.target.files[0];
-    this.fileimage = file;
-  }
-
-  fetchimage(url: string) {
-    return this.s1.bypassSecurityTrustUrl(url);
-  }
-
   ngOnInit() {
     this.admin = JSON.parse(sessionStorage.getItem('customer'));
     this.admin.image = 'data:image/jpeg;base64,' + this.admin.image;
@@ -51,8 +43,32 @@ export class AdminpageComponent implements OnInit {
     this.carslistfrom.controls['username'].setValue(this.admin.username);
   }
 
-  save(content) {
+  constructor(private cars: MatSnackBar, private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
 
+  // image insert and display function
+  image(value) {
+    const file = value.target.files[0];
+    const fsize = file.size;
+    const filesize = Math.round((fsize / 1024));
+    if (filesize > 2048) {
+      console.log(filesize);
+      alert("File too Big, please select a file less than 2mb");
+    }
+    else
+      this.fileimage = file;
+  }
+
+  fetchimage(url: string) {
+    return this.s1.bypassSecurityTrustUrl(url);
+  }
+
+
+  // adding new car
+  open(content) {
+    this.modalService.open(content, { size: 'lg', scrollable: true });
+  }
+
+  save(content) {
     const data = this.carslistfrom.value;
     const formdata = new FormData();
     formdata.append("data", JSON.stringify(data));
@@ -61,22 +77,18 @@ export class AdminpageComponent implements OnInit {
       this.modalService.dismissAll(content);
       this.caradded();
     }, error => {
-      console.log(error);
+      this.errormsg=error.error;
       if (error.status === 400) { }
     });
 
   }
 
-  constructor(private cars: MatSnackBar, private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
-
   caradded() {
     this.cars.open("cars added", "enjoy", { duration: 2 * 1000 });
   }
 
-  open(content) {
-    this.modalService.open(content, { size: 'lg', scrollable: true });
-  }
 
+  // admin section
   getcarno() {
     this.status = true;
     this.addcarservice.bookedcars(this.admin.phonenumber).subscribe(data => {
@@ -94,13 +106,6 @@ export class AdminpageComponent implements OnInit {
     })
   }
 
-  homepage() {
-    this.status = !this.status;
-  }
-  logout() {
-    this.modalService.open(LogoutComponent);
-  }
-
   tripclose(bookedcar: any) {
     bookedcar.status = false;
     this.addcarservice.closetrip(bookedcar, bookedcar.numberplate).subscribe(data => {
@@ -111,4 +116,10 @@ export class AdminpageComponent implements OnInit {
     });
   }
 
+  homepage() {
+    this.status = !this.status;
+  }
+  logout() {
+    this.modalService.open(LogoutComponent);
+  }
 }
