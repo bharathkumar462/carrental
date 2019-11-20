@@ -139,3 +139,7 @@ img{
 	width:50px ;
 	margin-top: 5px;
 }
+
+.comments p{
+text-align: justify;
+}

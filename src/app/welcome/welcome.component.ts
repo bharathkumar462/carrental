@@ -2,28 +2,19 @@ import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
-import { ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { trigger, state, transition, style, animate } from '@angular/animations';
-import { DOCUMENT } from '@angular/common';
+
+
 
 @Component({
   selector: 'welcome',
   templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css'],
-  animations: [
-    trigger('fade',
-      [
-        state('void', style({ opacity: 0 })),
-        transition(':enter', [animate(300)]),
-        transition(':leave', [animate(500)]),
-      ]
-    )]
+  styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
 
   name: string;
 
-  constructor(private modalService: NgbModal, @Inject(DOCUMENT) document) { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {  }
 
