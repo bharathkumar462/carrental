@@ -89,7 +89,7 @@
                         <button type="button" class="btn btn-sm btn-primary" *ngIf="row.bookstatus">
                             NOW BOOKED
                         </button>
-                        <button type="button" class="btn btn-sm btn-primary" disabled *ngIf="!row.bookstatus">OLD</button>
+                        <button type="button" class="btn btn-sm btn-danger" disabled *ngIf="!row.bookstatus">COMPLETED</button>
                     </td>
                 </ng-container>
 

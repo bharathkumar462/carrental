@@ -15,7 +15,7 @@
                 <div id="firstimage" style="background-image: url('assets/images/welcomeimage.jpg')">
                         <p class="display-3">WISE PEOPLE DON'T USE CARS</p>
                         <p class="display-3"> JUST MAKE THEIR CARS TO MAKE MONEY!!!</p>
-                        <button style="margin-left:400px;height:50px;width: 500px;" (click)="open(content)" class="btn btn-lg btn-warning">
+                        <button style="margin-left:400px;height:50px;width:500px;" (click)="open(content)" class="btn btn-lg btn-warning">
                                 Add Cars</button>
                 </div>
         </div>
@@ -46,9 +46,10 @@
                                 <ng-container matColumnDef="bookstatus">
                                         <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
                                         <td mat-cell *matCellDef="let row">
-                                                <button type="button" class="btn btn-sm btn-primary" *ngIf="row.bookstatus"  (click)="tripclose(row)">TRIP
-                                                        CLOSE</button>
-                                                <button type="button" class="btn btn-sm btn-primary" disabled *ngIf="!row.bookstatus" >CLOSED</button>
+                                                <button type="button" class="btn btn-sm btn-primary" *ngIf="row.bookstatus"
+                                                        (click)="tripclose(row)">
+                                                        END TRIP</button>
+                                                <button type="button" class="btn btn-sm btn-danger" disabled *ngIf="!row.bookstatus">CLOSED</button>
                                         </td>
                                 </ng-container>
 

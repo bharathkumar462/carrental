@@ -83,7 +83,7 @@
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <mat-error *ngIf="(customerform.controls.repassword.invalid)">
+                <mat-error *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
                     * should be combination of all cases and numbers.
                 </mat-error>
                
