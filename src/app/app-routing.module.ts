@@ -6,11 +6,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { PickuppointComponent } from './pickuppoint/pickuppoint.component';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { BookcarsComponent } from './bookcars/bookcars.component';
-import { BookedcarsComponent } from './bookedcars/bookedcars.component';
 import { AuthenticateGuard } from './authguard/authenticate.guard';
 import { AdminguardGuard } from './authguard/adminguard.guard';
-
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },

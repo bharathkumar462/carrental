@@ -28,7 +28,9 @@ img{
 
  .sidebar{
      background-color: wheat;
-     color: white;
+ }
+ .sidebar p{
+     color: black;
  }
  mat-drawer-container{
     height:100%;
@@ -72,4 +74,9 @@ td button{
 
 #error{
     color: red;
+}
+
+.modal-body p{
+    color: black;
+    text-align: center;
 }

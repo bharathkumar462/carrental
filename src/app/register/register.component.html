@@ -49,7 +49,7 @@
             </div>
 
             <mat-form-field>
-                <input matInput placeholder="First Name" type="text" formControlName="username" required class="example-right-align">
+                <input matInput placeholder="First Name" type="text" formControlName="username" required class="example-right-align lowercase">
                 <span matPrefix><i class="material-icons">account_circle</i></span>
                 <mat-error *ngIf="customerform.controls.username.invalid && customerform.controls.username.dirty">
                     * is required.
@@ -57,7 +57,7 @@
             </mat-form-field><br>
 
             <mat-form-field>
-                <input matInput placeholder="Phone Number" type="text" formControlName="phonenumber" required class="example-right-align">
+                <input matInput placeholder="Phone Number" type="text" formControlName="phonenumber" required class="example-right-align lowercase">
                 <span matPrefix><i class="material-icons">phone</i></span>
                 <mat-error *ngIf="customerform.controls.phonenumber.invalid && customerform.controls.phonenumber.dirty">
                     * is required.
@@ -72,7 +72,7 @@
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="customerform.controls.password.invalid && customerform.controls.password.dirty">
-                    * should be combination of all cases and numbers.
+                    * combination of all cases and numbers.
                 </mat-error>
             </mat-form-field><br>
 
@@ -84,13 +84,13 @@
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
-                    * should be combination of all cases and numbers.
+                    * Not Same.
                 </mat-error>
                
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput placeholder="emailid" type="text" formControlName="email" class="example-right-align">
+                <input matInput placeholder="emailid" type="text" formControlName="email" class="example-right-align lowercase">
                 <span matPrefix><i class="material-icons">mail</i></span>
                 <mat-error *ngIf="customerform.controls.email.invalid && customerform.controls.email.dirty">
                     * is required.

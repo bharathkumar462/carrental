@@ -14,24 +14,18 @@ import { AdminpageComponent } from './adminpage/adminpage.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { BookcarsComponent } from './bookcars/bookcars.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BookedcarsComponent } from './bookedcars/bookedcars.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { LogoutComponent } from './logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -43,27 +37,19 @@ import { LogoutComponent } from './logout/logout.component';
     PickuppointComponent,
     AdminpageComponent,
     BookcarsComponent,
-    BookedcarsComponent,
     LogoutComponent
   ],
   imports: [
     BrowserModule, NgbModule, ReactiveFormsModule,
     AppRoutingModule, FormsModule, HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCyD380KGjDX0bHwfIKpQ7IsJwpBrOrJm0'
-    }),
-    BrowserAnimationsModule, MatRadioModule,
-    MatAutocompleteModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCyD380KGjDX0bHwfIKpQ7IsJwpBrOrJm0'}),
+    BrowserAnimationsModule, 
     MatButtonModule,
-    MatButtonToggleModule,
-    MatChipsModule,
     MatStepperModule,
     MatIconModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSelectModule,
     MatSidenavModule,
-    MatSliderModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,

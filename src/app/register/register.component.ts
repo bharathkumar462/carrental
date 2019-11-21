@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarrentalserviceService } from '../carrentalservice.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { Router } from '@angular/router';
 import { compareValidator } from '../confirmpassword.directive';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,12 +20,12 @@ export class RegisterComponent implements OnInit {
     admin: new FormControl('', Validators.required)
   });
   fileimage: any = File;
-  role;
   photo: string;
   hide = true;
   errormsg:string;
 
-  constructor(public activeModal: NgbActiveModal, private regservice: CarrentalserviceService, private modalService: NgbModal, private router: Router) { }
+  constructor(public activeModal: NgbActiveModal, private regservice: CarrentalserviceService,
+     private modalService: NgbModal, private router: Router,private customer:MatSnackBar) { }
 
   ngOnInit() { }
 
@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
     const formdata = new FormData();
     formdata.append("data", JSON.stringify(data));
     formdata.append('image', this.fileimage);
-    this.regservice.createCustomer(formdata).subscribe(data =>  {
+    this.regservice.createCustomer(formdata).subscribe(data =>  {this.newcustomer();
       this.activeModal.close();}, error =>{ this.errormsg=error.error});
   }
 
@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
     const fsize = file.size;
     const filesize = Math.round((fsize / 1024));
     if (filesize > 2048) {
-      console.log(filesize);
       alert("File too Big, please select a file less than 2mb");
     }
     else {
@@ -51,4 +50,9 @@ export class RegisterComponent implements OnInit {
       this.photo = this.fileimage.name;
     }
   }
+
+  newcustomer() {
+    this.customer.open("Successfully registered", "enjoy the ride", { duration: 2 * 1000 });
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CarrentalserviceService } from '../carrentalservice.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -6,6 +6,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LogoutComponent } from '../logout/logout.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CarsList } from '../model/carslist';
+import { MatTableDataSource } from '@angular/material/table';
+import { BookCars } from '../model/bookcars';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-adminpage',
@@ -19,9 +23,9 @@ export class AdminpageComponent implements OnInit {
   fileimage: any = File;
   carslist: CarsList = new CarsList();
   admin;
-  triplist;
+  triplist:BookCars[]=[];
   display = true;
-  dataSource;
+  dataSource: MatTableDataSource<BookCars>;
   status = false;
   errormsg:string;
   displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus']
@@ -35,6 +39,9 @@ export class AdminpageComponent implements OnInit {
     phonenumber: new FormControl('', Validators.required),
     username: new FormControl('', Validators.required)
   });
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
     this.admin = JSON.parse(sessionStorage.getItem('customer'));
@@ -102,7 +109,7 @@ export class AdminpageComponent implements OnInit {
     this.display = false;
     this.addcarservice.gettriplist(data.numberplate).subscribe(data => {
       this.triplist = data;
-      this.dataSource = data;
+      this.dataSource = new MatTableDataSource(this.triplist);
     })
   }
 
@@ -122,4 +129,12 @@ export class AdminpageComponent implements OnInit {
   logout() {
     this.modalService.open(LogoutComponent);
   }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  
 }

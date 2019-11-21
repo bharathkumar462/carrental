@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CarsList } from '../model/carslist';
 import { BookCars } from '../model/bookcars';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-bookcars',
@@ -14,7 +15,8 @@ import { BookCars } from '../model/bookcars';
 })
 export class BookcarsComponent implements OnInit {
   urlimage: any[] = [];
-  constructor(private getcarservice: CarrentalserviceService, private s1: DomSanitizer, private router: Router) { }
+  constructor(private getcarservice: CarrentalserviceService, private s1: DomSanitizer, 
+    private router: Router,private car:MatSnackBar) { }
   details; cars: CarsList[] = [];
   ngOnInit() {
     this.details = JSON.parse(sessionStorage.getItem('data'));
@@ -32,7 +34,6 @@ export class BookcarsComponent implements OnInit {
   }
 
   save(carsinfo: any) {
-    console.log(carsinfo);
     let bookcars: BookCars = new BookCars();
     bookcars.numberplate = carsinfo.numberplate;
     let splitimage: string[] = carsinfo.image.split(",");
@@ -46,7 +47,11 @@ export class BookcarsComponent implements OnInit {
     bookcars.bookedtime = bookinfo.bookedtime;
     bookcars.bookeddate = bookinfo.pickupdate;
     carsinfo.image = splitimage[1];
-    this.getcarservice.updatestatus(carsinfo).subscribe(data => {this.router.navigate(['pickuppoint']);});
+    this.getcarservice.updatestatus(carsinfo).subscribe(data => {this.carBooked();this.router.navigate(['pickuppoint']);});
     this.getcarservice.bookcars(bookcars).subscribe(data =>{});
+  }
+
+  carBooked() {
+    this.car.open("Successfully registered", "enjoy the ride", { duration: 2 * 1000 });
   }
 }

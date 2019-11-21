@@ -20,6 +20,9 @@
                 </div>
         </div>
         <div [hidden]="!status" class="container">
+                <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
                 <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSource" matSort>
 
@@ -62,7 +65,8 @@
                 <button type="button" class="btn btn-outline-dark" (click)="homepage()">BACK</button>
         </div>
         <mat-drawer #drawer class="sidebar" mode="side">
-                <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)"><br>
+                <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" (click)="open(admininfo)"><br>
+                <p>Welcome {{admin.username}}</p>
                 <hr>
                 <button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button>
                 <div class="carnoplates" style="display:block;" *ngFor="let c of carnoplate">
@@ -112,5 +116,20 @@
                         <p id="error">{{errormsg}}</p>
                         <button type="submit" class="btn btn-outline-success btn-block" (click)="save(content)">Submit</button>
                 </form>
+        </div>
+</ng-template>
+
+<ng-template #admininfo let-modal>
+        <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Your Info</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="modal-body">
+                <img class="text-center" [src]="fetchimage(admin.image)"><br>
+                <p>Name: {{admin.username}}</p>
+                <p>Phonenumber: {{admin.phonenumber}}</p>
+                <p>Email-Id: {{admin.email}}</p>
         </div>
 </ng-template>
