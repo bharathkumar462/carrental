@@ -66,7 +66,7 @@
 
             <mat-form-field>
                 <input matInput placeholder="Password" [type]="hide ?'password':'text'" formControlName="password"
-                    class="example-right-align">
+                    class="example-right-align" >
                 <span matPrefix><i class="material-icons">lock</i></span>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -78,14 +78,15 @@
 
             <mat-form-field>
                 <input matInput placeholder="Re-Type Password" [type]="hide ?'password':'text'" formControlName="repassword"
-                    class="example-right-align">
+                    class="example-right-align" >
                 <span matPrefix><i class="material-icons">lock</i></span>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <mat-error *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
+                <mat-error *ngIf="(customerform.controls.repassword.invalid)">
                     * should be combination of all cases and numbers.
                 </mat-error>
+               
             </mat-form-field>
             <br>
             <mat-form-field>
