@@ -11,21 +11,20 @@
     <div *ngFor="let c of cars">
       <div class="card mb-3" style="max-width: 800px;">
         <div class="row no-gutters">
-          <div class="col-md-4">
+          <div class="col-4">
             <img [src]="fetchimage(c.image)" class="card-img">
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{c.carname | uppercase}}</h5>
-              <div>
-                <p class="card-text"> PRICE</p>
-                <p class="card-text"> NUMBERPLATE</p>
+          <div class="col-8">
+            <div class="card-body row">
+              <div class="col-8">
+                <h5 class="card-title">{{c.carname | uppercase}}</h5>
+                <p class="card-text"> NUMBERPLATE: {{c.numberplate}}</p>
               </div>
-              <div>
-                <p class="price card-text"> {{c.price}}</p>
-                <p class="card-text"> {{c.numberplate}}</p>
+              <div class="col-4">
+                <p class="price card-text">Rs.{{c.price}}/day</p>
+                <button *ngIf="!c.bookstatus" [disabled]="c.bookstatus" class="btn btn-success" (click)="save(c)">BOOK</button>
+                <button *ngIf="c.bookstatus" [disabled]="c.bookstatus" class="btn btn-danger" (click)="save(c)">BOOKED</button>
               </div>
-              <button [disabled]="c.bookstatus" class="btn btn-primary" (click)="save(c)">BOOK</button>
             </div>
           </div>
         </div>

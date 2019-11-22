@@ -11,14 +11,23 @@ import { BookCars } from '../model/bookcars';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CustomerDetails } from '../model/customerdetails';
+import { trigger, style, state, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-adminpage',
   templateUrl: './adminpage.component.html',
-  styleUrls: ['./adminpage.component.css']
+  styleUrls: ['./adminpage.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AdminpageComponent implements OnInit {
 
+  expandedElement: BookCars | null;
 
   carnoplate: any;
   fileimage: any = File;
@@ -29,7 +38,7 @@ export class AdminpageComponent implements OnInit {
   dataSource: MatTableDataSource<BookCars>;
   status = false;
   errormsg: string;
-  displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus'];
+  displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'username'];
 
   // formgroup 
   carslistfrom = new FormGroup({
@@ -102,8 +111,6 @@ export class AdminpageComponent implements OnInit {
     this.status = true;
     this.addcarservice.bookedcars(this.admin.phonenumber).subscribe(data => {
       this.carnoplate = data;
-      console.log(data);
-      console.log(this.carnoplate);
     })
   }
 
@@ -111,6 +118,8 @@ export class AdminpageComponent implements OnInit {
     this.display = false;
     this.addcarservice.gettriplist(data.numberplate).subscribe(data => {
       this.triplist = data;
+      for(let i=0;i<this.triplist.length;i++)
+      {this.triplist[i].image='data:image/jpeg;base64,' +this.triplist[i].image }
       this.dataSource = new MatTableDataSource(this.triplist);
     })
   }
@@ -120,7 +129,9 @@ export class AdminpageComponent implements OnInit {
     this.addcarservice.closetrip(bookedcar, bookedcar.numberplate).subscribe(data => {
       this.addcarservice.gettriplist(bookedcar.numberplate).subscribe(data => {
         this.triplist = data;
-        this.dataSource = data;
+        for(let i=0;i<this.triplist.length;i++)
+        {this.triplist[i].image='data:image/jpeg;base64,' +this.triplist[i].image }
+        this.dataSource = new MatTableDataSource(this.triplist);
       })
     });
   }

@@ -52,6 +52,6 @@ export class BookcarsComponent implements OnInit {
   }
 
   carBooked() {
-    this.car.open("Successfully registered", "enjoy the ride", { duration: 2 * 1000 });
+    this.car.open("Successfully Booked", "enjoy the ride", { duration: 2 * 1000 });
   }
 }
