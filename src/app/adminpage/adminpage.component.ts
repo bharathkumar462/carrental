@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { BookCars } from '../model/bookcars';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { CustomerDetails } from '../model/customerdetails';
 
 @Component({
   selector: 'app-adminpage',
@@ -18,17 +19,17 @@ import { MatSort } from '@angular/material/sort';
 })
 export class AdminpageComponent implements OnInit {
 
-  urlimage;
-  carnoplate;
+
+  carnoplate: any;
   fileimage: any = File;
   carslist: CarsList = new CarsList();
-  admin;
-  triplist:BookCars[]=[];
+  admin: CustomerDetails;
+  triplist: BookCars[] = [];
   display = true;
   dataSource: MatTableDataSource<BookCars>;
   status = false;
-  errormsg:string;
-  displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus']
+  errormsg: string;
+  displayedColumns: string[] = ['numberplate', 'bookeddate', 'bookedtime', 'customername', 'bookstatus'];
 
   // formgroup 
   carslistfrom = new FormGroup({
@@ -50,7 +51,8 @@ export class AdminpageComponent implements OnInit {
     this.carslistfrom.controls['username'].setValue(this.admin.username);
   }
 
-  constructor(private cars: MatSnackBar, private addcarservice: CarrentalserviceService, private s1: DomSanitizer, private modalService: NgbModal) { }
+  constructor(private cars: MatSnackBar, private addcarservice: CarrentalserviceService,
+     private sanitize: DomSanitizer, private modalService: NgbModal) { }
 
   // image insert and display function
   image(value) {
@@ -66,7 +68,7 @@ export class AdminpageComponent implements OnInit {
   }
 
   fetchimage(url: string) {
-    return this.s1.bypassSecurityTrustUrl(url);
+    return this.sanitize.bypassSecurityTrustUrl(url);
   }
 
 
@@ -84,7 +86,7 @@ export class AdminpageComponent implements OnInit {
       this.modalService.dismissAll(content);
       this.caradded();
     }, error => {
-      this.errormsg=error.error;
+      this.errormsg = error.error;
       if (error.status === 400) { }
     });
 
@@ -136,5 +138,5 @@ export class AdminpageComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
+
 }

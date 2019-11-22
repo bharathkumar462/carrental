@@ -25,6 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { LogoutComponent } from './logout/logout.component';
+import { AdminpageModule } from './adminpage/adminpage.module';
 
 
 @NgModule({
@@ -35,12 +36,11 @@ import { LogoutComponent } from './logout/logout.component';
     WelcomeComponent,
     ForgotpasswordComponent,
     PickuppointComponent,
-    AdminpageComponent,
     BookcarsComponent,
     LogoutComponent
   ],
   imports: [
-    BrowserModule, NgbModule, ReactiveFormsModule,
+    BrowserModule, NgbModule, ReactiveFormsModule,AdminpageModule,
     AppRoutingModule, FormsModule, HttpClientModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyCyD380KGjDX0bHwfIKpQ7IsJwpBrOrJm0'}),
     BrowserAnimationsModule, 

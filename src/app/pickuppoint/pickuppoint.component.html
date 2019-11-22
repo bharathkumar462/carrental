@@ -12,13 +12,13 @@
     </nav>
     <div [hidden]="status" class="container">
         <ngb-progressbar type="success" [value]="progressvalue" [striped]="true"></ngb-progressbar>
-        <mat-horizontal-stepper #stepper>
+        <mat-horizontal-stepper [linear]=true #stepper>
             <mat-step>
                 <div class="location">
                     <ng-template matStepLabel>Fill out your location</ng-template>
                     <h2>Tell us your Starting Point</h2>
                     <div class="input-group input-group-lg">
-                        <input class="form-control" type="text" [(ngModel)]="area" autocomplete placeholder="Enter the area location">
+                        <input class="form-control" type="text" [(ngModel)]="area" required placeholder="Enter the area location">
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="button">
                                 <img src="assets/images/compass.png" placement="bottom" ngbTooltip="MARK ON MAP"
@@ -27,6 +27,53 @@
                         </div>
                     </div>
                     <button mat-flat-button class="btn btn-primary btn-lg" matStepperNext (click)="progressValue()">Next</button>
+                </div>
+                <div class="row">
+                    <div class="col-6 card">
+                        <h2>Maximum Cars Available in Areas:</h2>
+                        <ul>
+                            <li (click)="selectArea('tnagar')">Tnagar</li>
+                            <li (click)="selectArea('velachery')">velachery</li>
+                            <li (click)="selectArea('ecr')">ECR</li>
+                            <li (click)="selectArea('saidapet')">Saidapet</li>
+                            <li (click)="selectArea('omr')">OMR</li>
+                        </ul>
+                    </div>
+                    <div class="col-5 card">
+                        <h2>Trending Offers:</h2>
+                        <ngb-carousel interval="1000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                            <ng-template ngbSlide>
+                                <div class="card">
+
+                                    <h5 class="card-title">SUPERMILERS CLUB</h5>
+                                    <p class="card-text">Your Zoomcar experience is much more rewarding when you
+                                        become our
+                                        Supermilers Club Member.</p>
+
+                                </div>
+                            </ng-template>
+                            <ng-template ngbSlide>
+                                <div class="card">
+
+                                    <h5 class="card-title">REFER & EARN</h5>
+                                    <p class="card-text">Refer or invite your friends to zoomcar and earn free
+                                        rides, free Z points
+                                        and more.</p>
+
+                                </div>
+                            </ng-template>
+                            <ng-template ngbSlide>
+                                <div class="card">
+
+                                    <h5 class="card-title">FREE FUEL</h5>
+                                    <p class="card-text">The fuel is on us for your complete trip. In case you
+                                        re-fuel a zoomcar,
+                                        we will re-fill your pockets and that’s a promise.</p>
+
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
+                    </div>
                 </div>
             </mat-step>
             <mat-step>
@@ -54,6 +101,26 @@
                     <h2>Time?</h2>
                     <ngb-timepicker [(ngModel)]="time" meridian="true"></ngb-timepicker>
                     <button class="btn btn-lg btn-outline-success" (click)="onSubmit()">submit</button>
+                </div>
+                <div class="row conform">
+                    <div class="col-4 card border-danger ">
+                        <div class="card-body">
+                            <h5 class="card-title">PICKUP DATE:</h5>
+                            <!-- <p class="card-text">{{}}</p> -->
+                        </div>
+                    </div>
+                    <div class="col-4 card border-danger ">
+                        <div class="card-body">
+                            <h5 class="card-title">DROP DATE:</h5>
+                            <!-- <p class="card-text">{{}}</p> -->
+                        </div>
+                    </div>
+                    <div class="col-4 card border-danger">
+                        <div class="card-body">
+                            <h5 class="card-title">PICKUP TIME:</h5>
+                            <!-- <p class="card-text">{{}}</p> -->
+                        </div>
+                    </div>
                 </div>
             </mat-step>
         </mat-horizontal-stepper>
@@ -103,7 +170,7 @@
     </div>
 
     <mat-drawer #drawer class="sidebar" mode="side">
-        <img id="customerphoto" class="text-center" [src]="fetchimage(customer.image)"><br>
+        <img id="customerphoto" class="text-center" [src]="fetchimage(customer.image)" (click)="open(customerinfo)"><br>
         <p>Welcome {{customer.username}}</p>
         <hr>
         <button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button>
@@ -133,5 +200,20 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<ng-template #customerinfo let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Your Info</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <img class="text-center" [src]="fetchimage(customer.image)"><br>
+        <p>Name: {{customer.username}}</p>
+        <p>Phonenumber: {{customer.phonenumber}}</p>
+        <p>Email-Id: {{customer.email}}</p>
     </div>
 </ng-template>

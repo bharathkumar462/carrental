@@ -36,6 +36,9 @@ justify-content: center;
 .card{
     box-shadow: 0 0 5px rgba(20, 20, 20, .6);
 }
+.card:hover{
+	transform: scale(1.1);
+}
 .card-text {
     display: block;
     font-style: italic;
@@ -45,6 +48,8 @@ justify-content: center;
     margin-top: 40px;
     margin-bottom:40px;
 }
+
+/* navbar */
 nav{
 	background-color: grey; 
     box-shadow: 0 0 5px rgba(8, 8, 8, 0.7);
@@ -68,7 +73,6 @@ img{
 	position: relative;
 	cursor: pointer;
 }
-	/* complete the animation! */
 	.three-d:hover .three-d-box, 
 	.three-d:focus .three-d-box {
 		transform: translateZ(-25px) rotateX(90deg);
@@ -87,10 +91,6 @@ img{
 	height: 40px;
 }
 
-/* 
-	put the "front" and "back" elements into place with CSS transforms, 
-	specifically translation and translatez
-*/
 .front {
 	transform: rotatex(0deg) translatez(25px);
 }
@@ -142,4 +142,8 @@ img{
 
 .comments p{
 text-align: justify;
+}
+
+button:hover{
+	transform: scale(1.5);
 }

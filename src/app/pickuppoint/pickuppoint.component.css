@@ -52,3 +52,36 @@ height: 50px;
 .sidebar{
   background-color: wheat;
 }
+
+/* card styles */
+
+ul{
+  text-align: center;
+  list-style-type: none;
+}
+.row .card{
+  height: 250px;
+  margin-top: 30px;
+  box-shadow: 0 0 5px rgba(20, 20, 20, .6);
+}
+li:hover{
+  font-weight: bold;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+.card .card{
+  height: 150px;
+  background-color: wheat;
+}
+.card .card:hover{
+  transform: scale(1.1);
+}
+.card-title{
+  text-align: center;
+}
+.card-text{
+  text-align: center;
+}
+.conform .card{
+  height: 100px;
+}

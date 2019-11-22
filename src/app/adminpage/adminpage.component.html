@@ -64,8 +64,56 @@
                 </div>
                 <button type="button" class="btn btn-outline-dark" (click)="homepage()">BACK</button>
         </div>
+        <div class="container" id="advantage">
+                <h2 style="font-weight: bold;text-align:center">WHY CARRENTAL </h2>
+
+                <div class="card-deck">
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/steering-wheel.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">3,000+</h5>
+                                        <p class="card-text">Rides Daily</p>
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/emoticon-with-happy-face.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">48,00,000+</h5>
+                                        <p class="card-text">Happy users</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/speedometer.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">360,00,000+</h5>
+                                        <p class="card-text">Km Travelled
+                                                (enough for 470 round trips to the moon!)</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/car-in-garage.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">6,500+</h5>
+                                        <p class="card-text">Number of Cars</p>
+
+                                </div>
+                        </div>
+                        <div class="card">
+                                <img class="card-img-top" src="assets/images/customer.png" alt="Card image cap">
+                                <div class="card-body">
+                                        <h5 class="card-title">Rating 4.7/5.0</h5>
+                                        <p class="card-text">Rated by 3,00,000+ customers over 10,00,000+ bookings</p>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
         <mat-drawer #drawer class="sidebar" mode="side">
-                <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" (click)="open(admininfo)"><br>
+                <div class="text-center">
+                        <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" (click)="open(admininfo)"><br>
+                </div>
                 <p>Welcome {{admin.username}}</p>
                 <hr>
                 <button type="button" class="btn btn-outline-dark" (click)="getcarno()">GET MY CARS LIST</button>
@@ -127,7 +175,9 @@
                 </button>
         </div>
         <div class="modal-body">
-                <img class="text-center" [src]="fetchimage(admin.image)"><br>
+                <div class="text-center">
+                        <img [src]="fetchimage(admin.image)">
+                </div><br>
                 <p>Name: {{admin.username}}</p>
                 <p>Phonenumber: {{admin.phonenumber}}</p>
                 <p>Email-Id: {{admin.email}}</p>

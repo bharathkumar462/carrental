@@ -4,4 +4,5 @@ export class CustomerDetails{
      password:string;
     repassword:string;
    admin:boolean;
+   image:any;
 }

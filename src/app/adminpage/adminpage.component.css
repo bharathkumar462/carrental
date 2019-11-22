@@ -80,3 +80,29 @@ td button{
     color: black;
     text-align: center;
 }
+.modal-body img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+/* card styles */
+#advantage img{
+    width: 95px;
+    height: 95px;
+}
+.card{
+    box-shadow: 0 0 5px rgba(20, 20, 20, .6);
+}
+.card:hover{
+	transform: scale(1.1);
+}
+.card-text {
+    color: black;
+    display: block;
+    font-style: italic;
+    font-weight: bold;
+}
+#advantage{
+    margin-top: 30px;
+}

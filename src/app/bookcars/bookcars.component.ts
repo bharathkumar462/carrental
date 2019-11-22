@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrentalserviceService } from '../carrentalservice.service';
-
 import { DomSanitizer } from '@angular/platform-browser';
-
 import { Router } from '@angular/router';
 import { CarsList } from '../model/carslist';
 import { BookCars } from '../model/bookcars';
@@ -15,22 +13,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BookcarsComponent implements OnInit {
   urlimage: any[] = [];
-  constructor(private getcarservice: CarrentalserviceService, private s1: DomSanitizer, 
-    private router: Router,private car:MatSnackBar) { }
   details; cars: CarsList[] = [];
+
+  constructor(private getcarservice: CarrentalserviceService, private sanitize: DomSanitizer,
+    private router: Router, private car: MatSnackBar) { }
+
   ngOnInit() {
     this.details = JSON.parse(sessionStorage.getItem('data'));
-    console.log(this.details);
     this.getcarservice.getCars(this.details.area).subscribe(data => {
       this.cars = data;
       for (let i = 0; i < this.cars.length; i++) {
         this.cars[i].image = 'data:image/jpeg;base64,' + this.cars[i].image;
       }
     });
-  }
-
-  fetchimage(url: string) {
-    return this.s1.bypassSecurityTrustUrl(url);
   }
 
   save(carsinfo: any) {
@@ -47,8 +42,13 @@ export class BookcarsComponent implements OnInit {
     bookcars.bookedtime = bookinfo.bookedtime;
     bookcars.bookeddate = bookinfo.pickupdate;
     carsinfo.image = splitimage[1];
-    this.getcarservice.updatestatus(carsinfo).subscribe(data => {this.carBooked();this.router.navigate(['pickuppoint']);});
-    this.getcarservice.bookcars(bookcars).subscribe(data =>{});
+    this.getcarservice.updatestatus(carsinfo).subscribe(data => { this.carBooked(); this.router.navigate(['pickuppoint']); });
+    this.getcarservice.bookcars(bookcars).subscribe(data => { });
+  }
+
+  
+  fetchimage(url: string) {
+    return this.sanitize.bypassSecurityTrustUrl(url);
   }
 
   carBooked() {
