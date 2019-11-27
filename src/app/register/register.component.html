@@ -65,8 +65,8 @@
             </mat-form-field><br>
 
             <mat-form-field>
-                <input matInput placeholder="Password" [type]="hide ?'password':'text'" formControlName="password"
-                    class="example-right-align" >
+                <input matInput placeholder="Password" [type]="hide ?'password':'text'" required formControlName="password"
+                    class="example-right-align">
                 <span matPrefix><i class="material-icons">lock</i></span>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -77,8 +77,8 @@
             </mat-form-field><br>
 
             <mat-form-field>
-                <input matInput placeholder="Re-Type Password" [type]="hide ?'password':'text'" formControlName="repassword"
-                    class="example-right-align" >
+                <input matInput placeholder="Re-Type Password" [type]="hide ?'password':'text'" required
+                    formControlName="repassword" class="example-right-align">
                 <span matPrefix><i class="material-icons">lock</i></span>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -86,11 +86,11 @@
                 <mat-error *ngIf="(customerform.controls.repassword.invalid && customerform.controls.repassword.dirty)">
                     * Not Same.
                 </mat-error>
-               
+
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput placeholder="emailid" type="text" formControlName="email" class="example-right-align lowercase">
+                <input matInput placeholder="emailid" type="text" formControlName="email" required class="example-right-align lowercase">
                 <span matPrefix><i class="material-icons">mail</i></span>
                 <mat-error *ngIf="customerform.controls.email.invalid && customerform.controls.email.dirty">
                     * is required.

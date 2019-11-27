@@ -2,9 +2,11 @@
 
 #firstimage{
 	margin-top: 5px;
-    height:600px;
+	height:500px;
+	width: 100%;
     background-size:100% 100%;
-    background-repeat: no-repeat;
+	background-repeat: no-repeat;
+	
 }
 .row a{
 display: flex;

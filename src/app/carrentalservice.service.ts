@@ -30,9 +30,9 @@ export class CarrentalserviceService {
     return this.http.post(`${this.baseUrl}` + `cars/availability`, area);
   }
 
-  bookcars(data: any): Observable<any> {
+  bookcars(carinfo: any): Observable<any> {
 
-    return this.http.post(this.baseUrl + "bookcars", data);
+    return this.http.post(this.baseUrl + "bookcars", carinfo);
   }
   bookedcars(bookedcar: any): Observable<any> {
     return this.http.post(this.baseUrl + "admin/carslist", bookedcar);
@@ -41,19 +41,19 @@ export class CarrentalserviceService {
 
     return this.http.post(this.baseUrl + "cars/status", cars);
   }
-  gettriplist(data: any): Observable<any> {
+  gettriplist(numberplate: any): Observable<any> {
 
-    return this.http.post(this.baseUrl + "admin/triplists", data);
+    return this.http.post(this.baseUrl + "admin/triplists", numberplate);
   }
   otpverify(otp: number): Observable<any> {
     return this.http.get(`${this.baseUrl}customers/${otp}`);
   }
-  mytriplist(data: any): Observable<any> {
-    return this.http.post(this.baseUrl + "customers/triplists", data);
+  mytriplist(mytrip: any): Observable<any> {
+    return this.http.post(this.baseUrl + "customers/triplists", mytrip);
   }
 
-  closetrip(data:any,numberplate:any):Observable<any>{
-    return this.http.put(this.baseUrl+`cars/${numberplate}`,data);
+  closetrip(carinfo:any,numberplate:any):Observable<any>{
+    return this.http.put(this.baseUrl+`cars/${numberplate}`,carinfo);
   }
 
   isAuthenticated(): boolean {

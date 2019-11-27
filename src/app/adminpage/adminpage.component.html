@@ -64,48 +64,8 @@
                 </div>
         </div>
         <div [hidden]="!status" class="container">
-                <!-- <mat-form-field>
-                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                </mat-form-field>
-                <div class="mat-elevation-z8">
-                        <table mat-table [dataSource]="dataSource" matSort>
-
-                                <ng-container matColumnDef="numberplate">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> numberplate </th>
-                                        <td mat-cell *matCellDef="let row"> {{row.numberplate}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="bookeddate">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> bookeddate </th>
-                                        <td mat-cell *matCellDef="let row"> {{row.bookeddate}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="bookedtime">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> bookedtime </th>
-                                        <td mat-cell *matCellDef="let row"> {{row.bookedtime}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="username">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
-                                        <td mat-cell *matCellDef="let row"> {{row.username}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="bookstatus">
-                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> bookstatus </th>
-                                        <td mat-cell *matCellDef="let row">
-                                                <button type="button" class="btn btn-sm btn-primary" *ngIf="row.bookstatus"
-                                                        (click)="tripclose(row)">
-                                                        END TRIP</button>
-                                                <button type="button" class="btn btn-sm btn-danger" disabled *ngIf="!row.bookstatus">CLOSED</button>
-                                        </td>
-                                </ng-container>
-
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                                </tr>
-                        </table>
-                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
-                <br><br>
+                <br>
+                <p style="color:black;text-align: center;">TRIP LIST</p><br>
                 <mat-form-field>
                         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
                 </mat-form-field>
@@ -137,14 +97,14 @@
                         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
                 </table>
                 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                <button type="button" class="btn btn-outline-dark" (click)="homepage()">BACK</button>
         </div>
-        <button type="button" class="btn btn-outline-dark" (click)="homepage()">BACK</button>
-
 
 
         <mat-drawer #drawer class="sidebar" mode="side">
                 <div class="text-center">
-                        <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" placement="left" ngbTooltip="My-info" (click)="open(admininfo)"><br>
+                        <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" placement="left"
+                                ngbTooltip="My-info" (click)="open(admininfo)"><br>
                 </div>
                 <p>Welcome {{admin.username}}</p>
                 <hr>
@@ -179,12 +139,12 @@
                         <br>
                         <label>carname:</label>
                         <input class="form-control form-control-lg" type="text" formControlName="carname" required>
-                        <span *ngIf="carslistfrom.controls.carname.invalid">
+                        <span *ngIf="carslistfrom.controls.carname.invalid && carslistfrom.controls.carname.dirty">
                                 carname is required.
                         </span><br> <br>
                         <label>price:</label>
                         <input class="form-control form-control-lg" type="number" formControlName="price" required>
-                        <span *ngIf="carslistfrom.controls.price.invalid">
+                        <span *ngIf="carslistfrom.controls.price.invalid && carslistfrom.controls.price.dirty">
                                 price is required.
                         </span><br>
                         <div class="image-upload">
