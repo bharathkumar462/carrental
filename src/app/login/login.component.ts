@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     this.lgnservice.checkCustomer(this.customerform.value).subscribe(data => {
       if (data != null) {
         this.customer = data;
-        console.log(this.customer);
         sessionStorage.setItem('customer', JSON.stringify(this.customer));
         if (this.customer.admin) {
           this.activeModal.close();
@@ -52,9 +51,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       if (error.status === 404) {
         this.authenticatemsg = error.error;
-        console.log(error);
       }
     });
   }
-
 }

@@ -125,7 +125,11 @@ export class AdminpageComponent implements OnInit {
   }
 
   tripclose(bookedcar: any) {
+    
+    let splitimage: string[] = bookedcar.image.split(",");
+    bookedcar.image = splitimage[1];
     bookedcar.status = false;
+    console.log(bookedcar);
     this.addcarservice.closetrip(bookedcar, bookedcar.numberplate).subscribe(data => {
       this.addcarservice.gettriplist(bookedcar.numberplate).subscribe(data => {
         this.triplist = data;

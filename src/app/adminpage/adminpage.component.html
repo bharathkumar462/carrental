@@ -1,7 +1,6 @@
 <mat-drawer-container>
         <div [hidden]="status">
                 <nav class="navbar bg-dark">
-
                         <div class="navbar-header">
                                 <img src="assets/images/doubleright.png" placement="bottom" ngbTooltip="info" (click)="drawer.toggle()">
                         </div>
@@ -125,7 +124,7 @@
                                                         customer phonenumber: {{element.phonenumber}}
                                                 </div>
                                                 <button type="button" class="btn btn-sm btn-primary" *ngIf="element.bookstatus"
-                                                        (click)="tripclose(row)">
+                                                        (click)="tripclose(element)">
                                                         END TRIP</button>
                                                 <button type="button" class="btn btn-sm btn-danger" disabled *ngIf="!element.bookstatus">CLOSED</button>
                                         </div>
@@ -145,7 +144,7 @@
 
         <mat-drawer #drawer class="sidebar" mode="side">
                 <div class="text-center">
-                        <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" (click)="open(admininfo)"><br>
+                        <img id="adminphoto" class="text-center" [src]="fetchimage(admin.image)" placement="left" ngbTooltip="My-info" (click)="open(admininfo)"><br>
                 </div>
                 <p>Welcome {{admin.username}}</p>
                 <hr>

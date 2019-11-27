@@ -2,7 +2,7 @@
 
         <nav class="navbar  animated fadeInDown" id="navbar">
                 <div class="navbar-header">
-                        <a class="navbar-brand" routerLink="/welcome">CARRENTAL</a>
+                        <a class="navbar-brand" routerLink="/welcome" placement="bottom" ngbTooltip="CARRENTAL">CARRENTAL</a>
                 </div>
                 <div class="navbar right" style="padding-top: 0px;">
                         <a class="three-d" id="login" (click)="open()">
@@ -149,7 +149,7 @@
                 </div>
         </div>
         <div class="container text-center">
-                <img (click)="open1()" style="cursor:pointer;" src="assets/images/sign-in.png">
+                <img (click)="open1()" placement="left" ngbTooltip="Sign-In" style="cursor:pointer;" src="assets/images/sign-in.png">
         </div>
         <div class="container" id="advantage">
                 <h2 style="font-weight: bold;text-align:center">WHY CARRENTAL </h2>

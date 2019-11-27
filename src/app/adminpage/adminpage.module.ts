@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminguardGuard } from '../authguard/adminguard.guard';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path: 'admin',component: AdminpageComponent,canActivate: [AdminguardGuard]}
@@ -22,7 +23,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [AdminpageComponent],
   imports: [CommonModule,RouterModule.forChild(routes),
-    ReactiveFormsModule,
+    ReactiveFormsModule,NgbModule,
     FormsModule,
     MatButtonModule,
     MatStepperModule,
