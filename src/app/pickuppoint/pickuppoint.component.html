@@ -20,7 +20,7 @@
                     <div class="input-group input-group-lg">
                         <input class="form-control" type="text" [(ngModel)]="area" required placeholder="Enter the area location">
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default " type="button" style="border:2px solid black;">
                                 <img src="assets/images/compass.png" placement="bottom" ngbTooltip="MARK ON MAP"
                                     (click)="open(content)">
                             </button>
@@ -32,11 +32,11 @@
                     <div class="col-6 card">
                         <h2>Maximum Cars Available in Areas:</h2>
                         <ul>
-                            <li (click)="selectArea('tnagar')">Tnagar</li>
-                            <li (click)="selectArea('velachery')">velachery</li>
-                            <li (click)="selectArea('ecr')">ECR</li>
-                            <li (click)="selectArea('saidapet')">Saidapet</li>
-                            <li (click)="selectArea('omr')">OMR</li>
+                            <li [highlight]="highLightColor" (click)="selectArea('tnagar')">Tnagar</li>
+                            <li [highlight]="highLightColor" (click)="selectArea('velachery')">velachery</li>
+                            <li [highlight]="highLightColor" (click)="selectArea('ecr')">ECR</li>
+                            <li [highlight]="highLightColor" (click)="selectArea('saidapet')">Saidapet</li>
+                            <li [highlight]="highLightColor" (click)="selectArea('omr')">OMR</li>
                         </ul>
                     </div>
                     <div class="col-5 card">

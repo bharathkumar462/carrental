@@ -24,7 +24,8 @@ export class ForgotpasswordComponent implements OnInit {
     admin: new FormControl('', Validators.required)
   });
 
-  constructor(private activeModal: NgbActiveModal, private modalService: NgbModal, private frgtservice: CarrentalserviceService) { }
+  constructor(private activeModal: NgbActiveModal, private modalService: NgbModal,
+     private frgtservice: CarrentalserviceService) { }
 
   ngOnInit() { }
 

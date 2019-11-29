@@ -26,7 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminpageModule } from './adminpage/adminpage.module';
-
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { AdminpageModule } from './adminpage/adminpage.module';
     ForgotpasswordComponent,
     PickuppointComponent,
     BookcarsComponent,
-    LogoutComponent
+    LogoutComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule, NgbModule, ReactiveFormsModule,AdminpageModule,

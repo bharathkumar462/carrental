@@ -14,7 +14,7 @@ import { CustomerDetails } from '../model/customerdetails';
   styleUrls: ['./pickuppoint.component.css']
 })
 export class PickuppointComponent implements OnInit {
-
+  highLightColor='green';
   progressvalue = 0;
   lat = 43.879078;
   lng = -103.4615581;

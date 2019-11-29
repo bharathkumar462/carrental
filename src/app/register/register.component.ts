@@ -12,6 +12,11 @@ import { Subscription } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
+  fileimage: any = File;
+  photo: string;
+  hide = true;
+  errormsg: string;
+
   customerform = new FormGroup({
     username: new FormControl('', Validators.required),
     phonenumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
@@ -20,11 +25,6 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z.-]+.[a-z]{2,4}$")]),
     admin: new FormControl('', Validators.required)
   });
-
-  fileimage: any = File;
-  photo: string;
-  hide = true;
-  errormsg: string;
 
   constructor(public activeModal: NgbActiveModal, private regservice: CarrentalserviceService,
     private modalService: NgbModal, private router: Router, private customer: MatSnackBar) { }

@@ -18,7 +18,7 @@ export class CarrentalserviceService {
     return this.http.post(`${this.baseUrl}` + `customers/authenticate`, customer);
   }
   forgotPassword(customer: object): Observable<any> {
-    return this.http.post(`${this.baseUrl}` + `customers/reauthenticate`, customer);
+    return this.http.post(`${this.baseUrl}` + `customers/re-authenticate`, customer);
   }
   updatePassword(customer: object): Observable<any> {
     return this.http.post(`${this.baseUrl}` + `customers/password`, customer);
@@ -32,10 +32,10 @@ export class CarrentalserviceService {
 
   bookcars(carinfo: any): Observable<any> {
 
-    return this.http.post(this.baseUrl + "bookcars", carinfo);
+    return this.http.post(this.baseUrl + "book-cars", carinfo);
   }
   bookedcars(bookedcar: any): Observable<any> {
-    return this.http.post(this.baseUrl + "admin/carslist", bookedcar);
+    return this.http.post(this.baseUrl + "admin/cars-list", bookedcar);
   }
   updatestatus(cars: any): Observable<any> {
 
@@ -43,13 +43,13 @@ export class CarrentalserviceService {
   }
   gettriplist(numberplate: any): Observable<any> {
 
-    return this.http.post(this.baseUrl + "admin/triplists", numberplate);
+    return this.http.post(this.baseUrl + "admin/trip-lists", numberplate);
   }
   otpverify(otp: number): Observable<any> {
     return this.http.get(`${this.baseUrl}customers/${otp}`);
   }
   mytriplist(mytrip: any): Observable<any> {
-    return this.http.post(this.baseUrl + "customers/triplists", mytrip);
+    return this.http.post(this.baseUrl + "customers/trip-lists", mytrip);
   }
 
   closetrip(carinfo:any,numberplate:any):Observable<any>{

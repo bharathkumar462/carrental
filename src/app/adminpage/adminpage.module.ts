@@ -15,13 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AdminguardGuard } from '../authguard/adminguard.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConversionPipe } from '../conversion.pipe';
 
 const routes: Routes = [
   {path: 'admin',component: AdminpageComponent,canActivate: [AdminguardGuard]}
 ];
 
 @NgModule({
-  declarations: [AdminpageComponent],
+  declarations: [AdminpageComponent,ConversionPipe],
   imports: [CommonModule,RouterModule.forChild(routes),
     ReactiveFormsModule,NgbModule,
     FormsModule,
